@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', Welcome::class)->name('welcome');
 Route::get('/bmi', Home::class)->name('calcul.bmi');
 Route::get('categories', Categories::class)->name('categories');
-Route::get('food/{id}', Foods::class)->name('food');
+Route::get('food/{id}', Foods::class)->where(['id' => '[0-9]+'])->name('food');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -41,22 +41,6 @@ Route::get('/lists', ListFoodUser::class)->name('user.listFood');
 
 
 route::get('/test', function () {
-    $s = collect(user_list::with('food')->where('user_id', auth()->user()->id)->get())->groupBy(function ($val) {
-        return Carbon::parse($val->created_at)->format('Y m d');
-    })->toArray();
-
-    foreach ($s as $key => $value) {
-        $totalKcal = 0;
-       
-        foreach ($value as $k => $v) {
-            // $s[$key]['Total_kcal'] = $v->kcal;
-            $totalKcal += $v['kcal'];
-        }
-
-        $s[$key]['TotalKcal']= $totalKcal;
-    }
-
-    dd($s);
 });
 
 require __DIR__ . '/auth.php';

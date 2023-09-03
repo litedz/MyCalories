@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
             $table->foreignId('food_id')->constrained();
-            $table->foreignId('recipe_id')->constrained();
+            $table->bigInteger('recipe_id')->nullable();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

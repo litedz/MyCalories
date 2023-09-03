@@ -11,7 +11,7 @@
 
                     <x-form.input labelName='quantity' placeHolder="150 . . ." wire:model.live='editQuantity' />
 
-                    @error('editQuantity') <span class="error text-red-500 list-item p-2  mx-4">{{ $message }}</span>
+                    @error('editQuantity') <span class="error text-red-500 list-food p-2  mx-4">{{ $message }}</span>
                     @enderror
 
                     <div class="showCalorie grid">
@@ -21,7 +21,8 @@
                         </div>
                     </div>
                     <div>
-                        <x-form.btn-primary class="mt-4 capitalize !text-white" wire:click='EditAndAddToList'>Add to List
+                        <x-form.btn-primary class="mt-4 capitalize !text-white" wire:click='EditAndAddToList'>Add to
+                            List
                         </x-form.btn-primary>
                         <x-form.btn-primary class="mt-4 capitalize !bg-red-400 !text-white !font-bold"
                             @click="showFormEdit = false">Cancel </x-form.btn-primary>
@@ -48,37 +49,46 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($foods as $item)
+                            @foreach ($foods as $food)
+                            @php
+                            // check if is in favorite list
+                            $IsLiked=in_array($food->id,$favorites_id)
+                            @endphp
 
 
-                            <tr class="border-b bg-neutral-100 ">
-                                <td class="whitespace-nowrap px-6 py-4 font-medium">{{$loop->index+1}}</td>
-                                <td class="whitespace-nowrap px-6 py-4">{{$item->name}}</td>
-                                <td class="whitespace-nowrap px-6 py-4">{{$item->code}}</td>
-                                <td class="whitespace-nowrap px-6 py-4">{{$item->protien}}</td>
-                                <td class="whitespace-nowrap px-6 py-4">{{$item->carbohydrate}}</td>
-                                <td class="whitespace-nowrap px-6 py-4">{{$item->quantity}}</td>
-                                <td class="whitespace-nowrap px-6 py-4">{{$item->unit}}</td>
-                                <td class="whitespace-nowrap px-6 py-4">{{$item->kcal}}</td>
-                                <td class="whitespace-nowrap px-6 py-4">
-                                    <div>
-                                        <button type="button" wire:click="AddFoodToList({{$item->id}})"
-                                            class="text-white focus:border-[1px] bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><span
-                                                class="fa fa-plus"></span></button>
-                                        {{-- <button type="button" wire:click=""
-                                            class="text-white focus:border-[1px] bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><span
-                                                class="fa fa-trash"></span></button> --}}
-                                        <button type="button"
-                                            @click="showFormEdit = true;$wire.set('editName','{{$item->name}}');$wire.set('editFood_id','{{$item->id}}')"
-                                            class="text-white focus:border-[1px] bg-gradient-to-r from-gray-500 via-gray-600 to-gray-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-gray-300 dark:focus:gray-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                                            <span class="fa fa-edit"></span>
+                                <tr class="border-b bg-neutral-100 " x-data="{favorite{{$loop->index}}:{{$IsLiked}}}">
 
-                                        </button>
+                                    <td class="whitespace-nowrap px-6 py-4 font-medium">{{$loop->index+1}}</td>
+                                    <td class="whitespace-nowrap px-6 py-4">{{$food->name}}</td>
+                                    <td class="whitespace-nowrap px-6 py-4">{{$food->code}}</td>
+                                    <td class="whitespace-nowrap px-6 py-4">{{$food->protien}}</td>
+                                    <td class="whitespace-nowrap px-6 py-4">{{$food->carbohydrate}}</td>
+                                    <td class="whitespace-nowrap px-6 py-4">{{$food->quantity}}</td>
+                                    <td class="whitespace-nowrap px-6 py-4">{{$food->unit}}</td>
+                                    <td class="whitespace-nowrap px-6 py-4">{{$food->kcal}}</td>
+                                    <td class="whitespace-nowrap px-6 py-4">
+                                        <div>
+                                            <button type="button" wire:click="AddFoodToList({{$food->id}})"
+                                                class="text-white focus:border-[1px] bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><span
+                                                    class="fa fa-plus"></span></button>
+                                            <button type="button"
+                                                @click="showFormEdit = true;$wire.set('editName','{{$food->name}}');$wire.set('editFood_id','{{$food->id}}')"
+                                                class="text-white focus:border-[1px] bg-gradient-to-r from-gray-500 via-gray-600 to-gray-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-gray-300 dark:focus:gray-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                                                <span class="fa fa-edit"></span>
+                                            </button>
+                                            <button type="button"
+                                                @click="favorite{{$loop->index}} = true;$wire.AddToFavorite({{$food->id}})" class="">
+                                                <span class="fa fa-regular fa-star text-2xl text-yellow-300"
+                                                    :class="favorite{{$loop->index}} && 'fa-solid'"></span>
 
-                                    </div>
+                                            </button>
 
-                                </td>
-                            </tr>
+
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            
                             @endforeach
                         </tbody>
                     </table>

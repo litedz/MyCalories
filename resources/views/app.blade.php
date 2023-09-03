@@ -30,7 +30,7 @@
     <script>
         window.addEventListener('testwal',function(e) {
             let data = e.detail[0];
-            Swal.fire(data.title,'You clicked the button!',data.icon)
+            Swal.fire(data.title,'Click to hide window',data.icon)
         });
     </script>
 </body>

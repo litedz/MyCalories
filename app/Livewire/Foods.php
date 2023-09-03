@@ -2,8 +2,11 @@
 
 namespace App\Livewire;
 
+use App\Models\favorite;
 use App\Models\food;
 use App\Models\user_list;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\Attributes\On;
 
@@ -11,6 +14,8 @@ class Foods extends Component
 {
 
     public $foods;
+    public $food_id;
+    public array $favorites_id = [];
     public $editName = "Name food";
     public $editQuantity;
     public $editFood_id;
@@ -23,7 +28,24 @@ class Foods extends Component
 
     public function mount($id)
     {
-        $this->foods = food::where('categorie_food_id', $id)->get();
+        $this->food_id=$id;
+        $this->getFoodAandFav();
+    }
+
+    public function booted()  {
+        $this->getFoodAandFav();
+    }
+    public function getFoodAandFav()
+    {
+        $foods = food::where('categorie_food_id', $this->food_id)->get();
+        $favorite_user = favorite::select('food_id')->where('user_id', auth()->user()->id)->get();
+        foreach ($favorite_user as $key => $value) {
+            array_push($this->favorites_id, $value->food_id);
+        }
+        $foods->count() > 0 ? $this->foods = $foods : abort(404);
+    }
+    public function testf() {
+        $this->foods=food::where('categorie_food_id', $this->food_id)->get();
     }
     public function SortBycategorie($id)
     {
@@ -38,9 +60,6 @@ class Foods extends Component
     }
     public function AddFoodToList($id)
     {
-        $validatedData = request()->validate([
-            'id' => 'integer',
-        ]);
         $food = food::findOrfail($id);
 
         $addToList = user_list::create([
@@ -55,6 +74,20 @@ class Foods extends Component
         }
     }
 
+    public function AddToFavorite($id)
+    {
+
+        $checkFood = favorite::where('food_id', $id)->where('user_id', auth()->user()->id)->first();
+        if (!is_null($checkFood)) {
+            $this->SweatAlert('this food exist in the favorite list', 'warning');
+            return false;
+        }
+        $addToFav = favorite::create([
+            'user_id' => auth()->user()->id,
+            'food_id' => $id,
+        ]);
+        $addToFav ? $this->SweatAlert('Add to Favorite', 'Success') : '';
+    }
     public function EditAndAddToList()
     {
 

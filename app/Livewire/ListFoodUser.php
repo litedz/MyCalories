@@ -69,8 +69,8 @@ class ListFoodUser extends Component
     {
 
         $this->lists = collect(user_list::with('food')->where('user_id', auth()->user()->id)->get())->groupBy(function ($val) {
-            return Carbon::parse($val->created_at)->format(' m d');
-        });
+            return Carbon::parse($val->created_at)->format('m d');
+        })->sortBy('created_at')->values();
         // Calcul Total kcal  per day or month 
 
         foreach ($this->lists as $key => $value) {

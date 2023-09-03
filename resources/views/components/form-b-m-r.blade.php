@@ -134,7 +134,6 @@
             BMI: 0,
             ResultShow: false,
             Calcul() {
-
                 this.BMI = Math.round(this.weight / ((this.height / 100) * (this.height / 100)));
 
 
