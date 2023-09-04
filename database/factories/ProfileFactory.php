@@ -18,7 +18,16 @@ class ProfileFactory extends Factory
     public function definition(): array
     {
         return [
-            'calories' => fake()->numberBetween(1,5000), 
+            'bmi' => fake()->numberBetween(1, 3500),
+            'bmr' => fake()->numberBetween(1, 3500),
+            'sex' => fake()->randomElement(['men', 'woman']),
+            'height' => fake()->numberBetween(1, 3500),
+            'Unit_height' => fake()->randomElement(['cm', 'inch']),
+            'weight' => fake()->numberBetween(1, 3500),
+            'Unit_weight' => fake()->randomElement(['kg', 'pound']),
+            'age' => fake()->numberBetween(15, 100),
+            'activity' => fake()->randomElement(['height', 'low', 'slowly']),
+            'result' => fake()->randomElement(['obess', 'normal', 'Tiny']),
         ];
     }
 }

@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Categories;
+use App\Livewire\Favorite;
 use App\Livewire\Foods;
+use App\Livewire\FormCalcul;
 use App\Livewire\Home;
 use App\Livewire\ListFoodUser;
 use App\Livewire\Welcome;
@@ -22,9 +24,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', Welcome::class)->name('welcome');
-Route::get('/bmi', Home::class)->name('calcul.bmi');
+Route::get('/bmi', FormCalcul::class)->name('calcul.bmi');
 Route::get('categories', Categories::class)->name('categories');
 Route::get('food/{id}', Foods::class)->where(['id' => '[0-9]+'])->name('food');
+Route::get('favorite', Favorite::class)->name('favorite');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

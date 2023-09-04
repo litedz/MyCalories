@@ -4,12 +4,14 @@ namespace App\Livewire;
 
 use App\Models\food;
 use App\Models\user_list;
+use App\Traits\SweatAlert;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class ListFoodUser extends Component
 {
+    use SweatAlert;
     protected $rules = [
         'editQuantity' => 'required|integer',
         'editFood_id' => 'required|integer',
@@ -51,6 +53,7 @@ class ListFoodUser extends Component
 
         if ($Updated) {
             $this->dispatch('calcul-kcal-day')->component('navbar');
+            $this->getLists();
             $this->SweatAlert('Item Updated', 'info');
         }
     }
@@ -81,13 +84,6 @@ class ListFoodUser extends Component
             // Add to A Collection 
             $this->lists[$key]['TotalKcal'] = $totalKcal;
         }
-    }
-    public function SweatAlert(string $title, string $type)
-    {
-        $this->dispatch('testwal', [
-            'title' => $title,
-            'icon' => $type,
-        ]);
     }
     public function render()
     {

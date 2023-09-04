@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\favorite;
 use App\Models\food;
 use App\Models\user_list;
+use App\Traits\SweatAlert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
@@ -12,6 +13,7 @@ use Livewire\Attributes\On;
 
 class Foods extends Component
 {
+    use SweatAlert;
 
     public $foods;
     public $food_id;
@@ -109,13 +111,7 @@ class Foods extends Component
             $this->SweatAlert('Item Add to the list', 'success');
         }
     }
-    public function SweatAlert(string $title, string $type)
-    {
-        $this->dispatch('testwal', [
-            'title' => $title,
-            'icon' => $type,
-        ]);
-    }
+
     public function render()
     {
 

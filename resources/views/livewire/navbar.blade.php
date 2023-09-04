@@ -36,7 +36,7 @@
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">BMI</a>
                             <a href="{{route('categories')}}" wire:navigate
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Foods</a>
-                            <a href="#" wire:navigate
+                            <a href="{{route('favorite')}}" wire:navigate
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Favorite</a>
                             @isset($kcalDay)
                             <a href="#" wire:navigate

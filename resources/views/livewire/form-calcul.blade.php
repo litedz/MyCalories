@@ -18,7 +18,8 @@
                 <div class="flex gap-10  w-full items-center">
                     <div>
                         <label for="weight" class="capitalize">Kg</label>
-                        <input type="checkbox" name="kg" id="" class="rounded-full" wire:model.live='weightUnit' value="kg">
+                        <input type="checkbox" name="kg" id="" class="rounded-full" wire:model.live='weightUnit'
+                            value="kg">
                     </div>
                     <div>
                         <label for="weight" class="capitalize">Pound</label>
@@ -36,7 +37,8 @@
                 <div class="flex  gap-10 w-full items-center">
                     <div>
                         <label for="weight" class="capitalize">cm</label>
-                        <input type="checkbox" name="cm" id="" class="rounded-full" wire:model.live='heighttUnit' value="cm">
+                        <input type="checkbox" name="cm" id="" class="rounded-full" wire:model.live='heighttUnit'
+                            value="cm">
                     </div>
                     <div>
                         <label for="weight" class="capitalize">inch</label>
@@ -69,9 +71,14 @@
                     </option>
                 </select>
             </div>
-            <div>
+            <div class="flex gap-4">
                 <button type="button" class="bg-indigo-700 text-white font-bold rounded w-40 p-3"
+                name="calcul"
+                id="calcul"
                     @click="Calcul">Calcul</button>
+                <button  type="button"
+                name="save" id="save"
+                    class="bg-green-500 text-white font-bold rounded w-40 p-3" x-show="showBtnSave" x-transition>Save</button>
             </div>
             <div class="result">
                 <div class="MBR" x-show="ResultShow">
@@ -127,6 +134,7 @@
         Alpine.data('formBM', () => ({
             weight: '',
             height: '',
+            showBtnSave:false,
             sex: 'men',
             age: '',
             activity: '1.2',
@@ -153,6 +161,7 @@
                 // Show result
                 if (this.BMI > 0 && this.BMR.length > 0) {
                     this.ResultShow = true;
+                    this.showBtnSave = true;
                 }
             }
         }))
