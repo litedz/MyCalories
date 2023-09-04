@@ -1,6 +1,6 @@
 <div>
     <div class="flex flex-col p-4" x-data="{showFormEdit:false}">
-        <button type="button" wire:click='testf'>Click me</button>
+        
         <div class="w-full h-full fixed top-0 left-0 edit-form" x-cloak x-show="showFormEdit" x-transition>
             <div class="overlay w-full h-full absolute bg-slate-600 opacity-50 z-10"></div>
             <div class="w-2/5 mx-auto relative z-20 top-1/4">
