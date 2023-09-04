@@ -76,10 +76,10 @@
             <div class="result">
                 <div class="MBR" x-show="ResultShow">
 
-                    Your MBR is <span class="font-bold" x-text="BMR">44444</span>
+                    Your MBR is <span class="font-bold" x-text="BMR"></span>
                 </div>
                 <div class="BMI" x-show="ResultShow">
-                    Your BMI is <span class="font-bold" x-text="BMI">44444</span>
+                    Your BMI is <span class="font-bold" x-text="BMI"></span>
                 </div>
                 <div class="indice w-full flex  flex-row-reverse relative capitalize ">
                     <div class="basis-2/6 grid">

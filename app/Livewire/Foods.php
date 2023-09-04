@@ -28,11 +28,12 @@ class Foods extends Component
 
     public function mount($id)
     {
-        $this->food_id=$id;
+        $this->food_id = $id;
         $this->getFoodAandFav();
     }
 
-    public function booted()  {
+    public function booted()
+    {
         $this->getFoodAandFav();
     }
     public function getFoodAandFav()
@@ -44,8 +45,9 @@ class Foods extends Component
         }
         $foods->count() > 0 ? $this->foods = $foods : abort(404);
     }
-    public function testf() {
-        $this->foods=food::where('categorie_food_id', $this->food_id)->get();
+    public function testf()
+    {
+        // dd($this->foods);
     }
     public function SortBycategorie($id)
     {
@@ -86,6 +88,8 @@ class Foods extends Component
             'user_id' => auth()->user()->id,
             'food_id' => $id,
         ]);
+
+        $this->getFoodAandFav();
         $addToFav ? $this->SweatAlert('Add to Favorite', 'Success') : '';
     }
     public function EditAndAddToList()

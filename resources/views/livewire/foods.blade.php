@@ -1,6 +1,7 @@
 <div>
     <div class="flex flex-col p-4" x-data="{showFormEdit:false}">
-        <div class="w-full h-full fixed top-0 left-0 edit-form" x-show="showFormEdit" x-transition>
+        <button type="button" wire:click='testf'>Click me</button>
+        <div class="w-full h-full fixed top-0 left-0 edit-form" x-cloak x-show="showFormEdit" x-transition>
             <div class="overlay w-full h-full absolute bg-slate-600 opacity-50 z-10"></div>
             <div class="w-2/5 mx-auto relative z-20 top-1/4">
                 <form action="" class="bg-white p-4 rounded grid gap-5">
@@ -56,7 +57,7 @@
                             @endphp
 
 
-                                <tr class="border-b bg-neutral-100 " x-data="{favorite{{$loop->index}}:{{$IsLiked}}}">
+                                <tr class="border-b bg-neutral-100 " x-data="{favorite:{{$IsLiked}}}">
 
                                     <td class="whitespace-nowrap px-6 py-4 font-medium">{{$loop->index+1}}</td>
                                     <td class="whitespace-nowrap px-6 py-4">{{$food->name}}</td>
@@ -77,9 +78,10 @@
                                                 <span class="fa fa-edit"></span>
                                             </button>
                                             <button type="button"
-                                                @click="favorite{{$loop->index}} = true;$wire.AddToFavorite({{$food->id}})" class="">
+                                                @click="$wire.AddToFavorite({{$food->id}})" class="">
                                                 <span class="fa fa-regular fa-star text-2xl text-yellow-300"
-                                                    :class="favorite{{$loop->index}} && 'fa-solid'"></span>
+                                                x-cloak
+                                                    :class="{{$IsLiked}} && 'fa-solid'"></span>
 
                                             </button>
 
