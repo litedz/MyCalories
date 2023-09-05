@@ -6,17 +6,15 @@ use App\Models\favorite;
 use App\Models\food;
 use App\Models\user_list;
 use App\Traits\SweatAlert;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
-use Livewire\Attributes\On;
+
 
 class Foods extends Component
 {
     use SweatAlert;
 
     public $foods;
-    public $food_id;
+    public $categorie_food_id;
     public array $favorites_id = [];
     public $editName = "Name food";
     public $editQuantity;
@@ -30,7 +28,7 @@ class Foods extends Component
 
     public function mount($id)
     {
-        $this->food_id = $id;
+        $this->categorie_food_id = $id;
         $this->getFoodAandFav();
     }
 
@@ -40,16 +38,12 @@ class Foods extends Component
     }
     public function getFoodAandFav()
     {
-        $foods = food::where('categorie_food_id', $this->food_id)->get();
+        $foods = food::where('categorie_food_id', $this->categorie_food_id)->get();
         $favorite_user = favorite::select('food_id')->where('user_id', auth()->user()->id)->get();
         foreach ($favorite_user as $key => $value) {
             array_push($this->favorites_id, $value->food_id);
         }
         $foods->count() > 0 ? $this->foods = $foods : abort(404);
-    }
-    public function testf()
-    {
-        // dd($this->foods);
     }
     public function SortBycategorie($id)
     {
@@ -60,7 +54,7 @@ class Foods extends Component
         $this->validate();
         $food = food::find($this->editFood_id);
         $this->editKcal = intval(($this->editQuantity * $food->kcal) / $food->quantity);
-        // $this->foods = food::where('categorie_food_id', $id)->get();
+        
     }
     public function AddFoodToList($id)
     {

@@ -4,14 +4,20 @@ namespace Tests\Feature\Livewire;
 
 use App\Livewire\Favorite;
 use App\Livewire\Foods;
+use App\Models\categorie_food;
+use App\Models\food;
 use App\Models\User;
+use Database\Seeders\CategorieFoodSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Artisan;
 use Livewire\Livewire;
 use Tests\TestCase;
 
 class FavoriteTest extends TestCase
 {
+    use RefreshDatabase;
+
     /** @test */
     public function renders_successfully()
     {
@@ -22,14 +28,17 @@ class FavoriteTest extends TestCase
 
     public function test_user_can_remove_food_from_favorite()
     {
-        $this->actingAs(User::factory()->create());
 
-        Livewire::test('Foods', ['id' => '1'])
-            ->call('AddToFavorite', 1)
+        $this->seed();
+        $this->actingAs(User::factory()->create());
+        $food = food::get()->random();
+        $categorie_id = categorie_food::get()->random()->id;
+        Livewire::test('Foods', ['id' => $categorie_id])
+            ->call('AddToFavorite', $food->id)
             ->assertStatus(200);
 
         Livewire::test(Favorite::class)
-            ->call('RemoveFoodFromFav', 1)
+            ->call('RemoveFoodFromFav', $food->id)
             ->assertStatus(200);
     }
 }

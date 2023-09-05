@@ -16,35 +16,24 @@ class RegisterUserTest extends TestCase
      */
     public function test_create_user(): void
     {
-        $email = fake()->email();
+
         $response = $this->post('/register', [
             'name' => 'mohmaed',
-            'email' => $email,
+            'email' => fake()->email(),
             'password' => 'Pa$$w0rd!.fr123',
             'password_confirmation' => 'Pa$$w0rd!.fr123',
         ]);
         $response->assertRedirect('/dashboard');
     }
-    public function test_login(): void
+    public function test_user__can_login(): void
     {
 
-
+        $user=user::factory()->create();
         $response = $this->post('/login', [
-            'email' => 'test@example.com',
+            'email' => $user->email,
             'password' => 'password',
         ]);
-
         $response->assertRedirect('/dashboard');
     }
-    public function test_user_can_edit_food(): void
-    {
 
-
-        // $response = $this->post('/login', [
-        //     'email' => 'ryann13@yahoo.com',
-        //     'password' => 'Pa$$w0rd!.fr123',
-        // ]);
-
-        // $response->assertRedirect('/dashboard');
-    }
 }

@@ -16,4 +16,16 @@ class FormCalculTest extends TestCase
         Livewire::test(FormCalcul::class)
             ->assertStatus(200);
     }
+    public function test_form_require_attribute()
+    {
+        Livewire::test(FormCalcul::class)
+            ->call('SaveProfile')
+            ->assertHasErrors('bmi');
+    }
+    public function test_Calcul_bmi_and_bmr()
+    {
+        Livewire::test(FormCalcul::class)
+            ->call('SaveProfile')
+            ->assertHasErrors('bmi');
+    }
 }

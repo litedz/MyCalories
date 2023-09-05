@@ -29,6 +29,11 @@ Route::get('categories', Categories::class)->name('categories');
 Route::get('food/{id}', Foods::class)->where(['id' => '[0-9]+'])->name('food');
 Route::get('favorite', Favorite::class)->name('favorite');
 
+Route::middleware('auth')->group(function () {
+    Route::get('favorite', Favorite::class)->name('favorite');
+});
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
