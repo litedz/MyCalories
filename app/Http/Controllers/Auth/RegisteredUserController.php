@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\profile;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -41,7 +42,13 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        $profile = User::find($user->id)->update(['profile_id' => $user->id]);
+        //create defaul profile 
+        $profile =profile::create();
+
+        $assciatoToUser=$user->profile()->associate($profile);
+        $assciatoToUser->save();
+
+
         event(new Registered($user));
 
         Auth::login($user);

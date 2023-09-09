@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\BMI_categorie;
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Categories;
 use App\Livewire\Favorite;
@@ -49,6 +50,8 @@ Route::get('/lists', ListFoodUser::class)->name('user.listFood');
 
 
 route::get('/test', function () {
+
+    dd(BMI_categorie::OBESE_1);
 });
 
 require __DIR__ . '/auth.php';

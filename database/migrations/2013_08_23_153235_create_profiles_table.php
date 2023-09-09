@@ -17,12 +17,12 @@ return new class extends Migration
             $table->integer('bmr')->nullable();
             $table->string('sex')->nullable();
             $table->float('height')->nullable();
-            $table->string('Unit_height')->nullable();
+            $table->string('unitHeight')->nullable();
             $table->float('weight')->nullable();
-            $table->string('Unit_weight')->nullable();
+            $table->string('unitWeight')->nullable();
             $table->integer('age')->nullable();
-            $table->string('activity')->nullable();
-            $table->string('result')->nullable();
+            $table->enum('activity',['SUPER','HIGH','INTERMEDIATE','NORMAL','SLOW'])->nullable();
+            $table->enum('result',['UNDERWEIGHT','NORMAL','OVERWEIGHT','OBESE_1','OBESE_2'])->nullable();
             $table->timestamps();
         });
     }

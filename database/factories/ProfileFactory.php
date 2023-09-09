@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\activitys;
+use App\Enums\BMI_categorie;
 use App\Models\favorite;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,19 +21,16 @@ class ProfileFactory extends Factory
     {
         return [
 
-
-
-            'bmi' => fake()->numberBetween(1,3500),
-            'bmr' => fake()->numberBetween(1,3500),
-            'sex' => fake()->randomElement(['men','woman']),
-            'height' =>fake()->numberBetween(1,3500),
-            'Unit_height' => fake()->randomElement(['cm','inch']),
-            'weight' => fake()->numberBetween(1,3500),
-            'Unit_weight' => fake()->randomElement(['kg','pound']),
-           'age' => fake()->numberBetween(15,100),
-            'activity' => fake()->randomElement(['height','low','slowly']),
-            'result' => fake()->randomElement(['obess','normal','Tiny']),
-
+            'bmi' => fake()->numberBetween(1, 3500),
+            'bmr' => fake()->numberBetween(1, 3500),
+            'sex' => fake()->randomElement(['men', 'woman']),
+            'height' => fake()->numberBetween(1, 3500),
+            'unitheight' => fake()->randomElement(['cm', 'inch']),
+            'weight' => fake()->numberBetween(1, 3500),
+            'unitWeight' => fake()->randomElement(['kg', 'pound']),
+            'age' => fake()->numberBetween(15, 100),
+            'activity' => fake()->randomElement(array_column(activitys::cases(), 'name')),
+            'result' => fake()->randomElement(array_column(BMI_categorie::cases(), 'name')),
         ];
     }
 }

@@ -17,9 +17,10 @@ class RegisterUserTest extends TestCase
     public function test_create_user(): void
     {
 
+        $this->email = fake()->email();
         $response = $this->post('/register', [
             'name' => 'mohmaed',
-            'email' => fake()->email(),
+            'email' => $this->email,
             'password' => 'Pa$$w0rd!.fr123',
             'password_confirmation' => 'Pa$$w0rd!.fr123',
         ]);
