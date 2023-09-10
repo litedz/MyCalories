@@ -23,37 +23,37 @@ To run MyCal on your local machine, follow these steps:
    git clone https://github.com/yourusername/mycal.git
 
 
-1.Navigate to the project directory:
+2.Navigate to the project directory:
 
    ```bash
    cd composer install
 ```
-2.Install PHP dependencies:
+3.Install PHP dependencies:
 
    ```bash
    composer install
 ```
-3.Copy the .env.example file to .env and configure your database credentials:
+4.Copy the .env.example file to .env and configure your database credentials:
 
    ```bash
    cp .env.example .env
 ```
-4.Generate the application key:
+5.Generate the application key:
 
    ```bash
    php artisan key:generate
 ```
-5.Create and migrate the database:
+6.Create and migrate the database:
 
    ```bash
    php artisan migrate
 ```
-6.Install JavaScript dependencies:
+7.Install JavaScript dependencies:
 
    ```bash
    npm install 
 ```
-7.Build the assets:
+8.Build the assets:
 
    ```bash
    npm run dev
