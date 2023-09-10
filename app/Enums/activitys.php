@@ -8,6 +8,5 @@ enum activitys
     case HIGH;
     case INTERMEDIATE;
     case NORMAL;
-    case LOW;
     case SLOW;
 }

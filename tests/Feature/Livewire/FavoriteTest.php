@@ -7,10 +7,7 @@ use App\Livewire\Foods;
 use App\Models\categorie_food;
 use App\Models\food;
 use App\Models\User;
-use Database\Seeders\CategorieFoodSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Artisan;
 use Livewire\Livewire;
 use Tests\TestCase;
 

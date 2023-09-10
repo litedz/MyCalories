@@ -1,11 +1,10 @@
-<div x-data="{open:false,openMenuMobile:false,OpenProfile:true,OpenSubMenuProfile:false}">
+<div x-data="{ open: false, openMenuMobile: false, OpenProfile: true, OpenSubMenuProfile: false }">
     <nav class="bg-gray-800 mb-4">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div class="relative flex h-16 items-center justify-between">
                 <div class="absolute inset-y-0 left-0 flex items-center ">
                     <!-- Mobile menu button-->
-                    <button type="button"
-                    @click="openMenuMobile =!openMenuMobile"
+                    <button type="button" @click="openMenuMobile =!openMenuMobile"
                         class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white md:hidden lg:hidden"
                         aria-controls="mobile-menu" aria-expanded="false">
                         <span class="absolute -inset-0.5"></span>
@@ -24,26 +23,30 @@
                 </div>
                 <div class="flex flex-1 items-center justify-start sm:items-stretch sm:justify-around gap-5">
                     <div class="flex flex-shrink-0 items-center">
-                        <img class="h-8 w-auto rounded-full" src="{{asset('images/logo.png')}}" alt="Your Company">
+                        <img class="h-8 w-auto rounded-full" src="{{ asset('images/logo.png') }}" alt="Your Company">
                     </div>
                     <div class="md:ml-6 md:block sm:hidden">
-                        <div class="flex space-x-4">
+                        <div class="flex space-x-4" wire:key='{{ rand() }}'>
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <a href="{{route('welcome')}}" wire:navigate
+                            <a href="{{ route('welcome') }}" wire:navigate
                                 class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
                                 aria-current="page">Home</a>
-                            <a href="{{route('calcul.bmi')}}" wire:navigate
+                            <a href="{{ route('calcul.bmi') }}" wire:navigate
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">BMI</a>
-                            <a href="{{route('categories')}}" wire:navigate
+                            <a href="{{ route('categories') }}" wire:navigate
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Foods</a>
-                            <a href="{{route('favorite')}}" wire:navigate
+                            <a href="{{ route('favorite') }}" wire:navigate
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Favorite</a>
-                            @isset($kcalDay)
-                            <a href="#" wire:navigate
-                                class="text-gray-100 bg-gray-700 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
-                                {{$kcalDay}} <span class="capitalize">Kcal/day</span>
+
+
+        
+                        
+                            <a href="#" wire:key='{{ rand() }}' x-bind:class="$wire.bg_limite"
+                                class="hover:bg-gray-700  text-white hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+                                {{ $kcalDay }} <span class="capitalize">Kcal/day</span>
                             </a>
-                            @endisset
+
+
 
 
                         </div>
@@ -63,11 +66,11 @@
                     </button>
 
                     <!-- Profile dropdown -->
-                    <div class="relative ml-3"  @click="OpenSubMenuProfile = !OpenSubMenuProfile">
+                    <div class="relative ml-3" @click="OpenSubMenuProfile = !OpenSubMenuProfile">
                         <div>
                             <button type="button"
                                 class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                               id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="absolute -inset-1.5"></span>
                                 <span class="sr-only">Open user menu</span>
                                 <img class="h-8 w-8 rounded-full"
@@ -88,14 +91,16 @@
                 -->
                         <div x-show="OpenSubMenuProfile"
                             class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                            role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                            role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
+                            tabindex="-1">
                             <!-- Active: "bg-gray-100", Not Active: "" -->
-                            <a wire:navigate href="{{route('user.listFood')}}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                            <a wire:navigate href="{{ route('user.listFood') }}"
+                                class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                                 id="user-menu-item-0"><span class="fa fa-list text-xs"></span> Your List</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                id="user-menu-item-1">Settings</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                id="user-menu-item-2">Sign out</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                                tabindex="-1" id="user-menu-item-1">Settings</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                                tabindex="-1" id="user-menu-item-2">Sign out</a>
                         </div>
                     </div>
                 </div>

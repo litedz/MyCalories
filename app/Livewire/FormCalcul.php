@@ -24,7 +24,7 @@ class FormCalcul extends Component
     public $bmr;
     public $bmi;
     public $result = '';
-    public $ResultShow = true;
+    public $ResultShow = false;
     public $indiceBar = 50;
 
     protected $rules = [

@@ -88,12 +88,14 @@
                                         </td>
                                         <td class="px-6 py-4 text-center">
                                             <button type="button"
+                                            wire:key='{{rand()}}'
                                                 wire:click='DeleteFood({{ $item->food_id}} ,{{$item->id }})'
                                                 class="text-white focus:border-[1px] bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:gray-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
                                                 <span class="fa fa-trash"></span>
 
                                             </button>
                                             <button type="button"
+                                            wire:key='{{rand()}}'
                                                 @click="showFormEdit = true;$wire.set('editFood_id','{{ $item->food_id}}');$wire.set('editName',' {{$item->food->name}}');$wire.set('list_id','{{$item->id}}')"
                                                 class="text-white focus:border-[1px] bg-gradient-to-r from-gray-500 via-gray-600 to-gray-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-gray-300 dark:focus:gray-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
                                                 <span class="fa fa-edit"></span>

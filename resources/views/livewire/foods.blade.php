@@ -78,6 +78,7 @@
                                                 <span class="fa fa-edit"></span>
                                             </button>
                                             <button type="button"
+                                            wire:key='{{rand()}}'
                                                 @click="$wire.AddToFavorite({{$food->id}})" class="">
                                                 <span class="fa fa-regular fa-star text-2xl text-yellow-300"
                                                 x-cloak
