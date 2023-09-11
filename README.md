@@ -70,8 +70,9 @@ If you'd like to contribute to MyCal, please follow these guidelines:
 
 
 ## Acknowledgments
+
 - PHP 8.x
 - Laravel
 - Livewire
 - Alpine.js
-
+- Tailwind css
