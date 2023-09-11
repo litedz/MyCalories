@@ -46,7 +46,7 @@ To run MyCal on your local machine, follow these steps:
 6.Create and migrate the database:
 
    ```bash
-   php artisan migrate
+   php artisan migrate --seed
 ```
 7.Install JavaScript dependencies:
 
