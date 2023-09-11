@@ -48,7 +48,9 @@
 
 
 
+                                
                             <a href="#" wire:key='{{ rand() }}' x-bind:class="$wire.bg_limite"
+                            x-show="authUser"
                                 class="hover:bg-gray-700  text-white hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                                 {{ $kcalDay }} <span class="capitalize">Kcal/day</span>
                             </a>

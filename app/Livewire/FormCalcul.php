@@ -36,7 +36,7 @@ class FormCalcul extends Component
 
     public $ResultShow = false;
 
-    public $indiceBar = 50;
+    public $indiceBar = 0;
 
     protected $rules = [
         'weight' => 'required|numeric|min:20|max:500',
