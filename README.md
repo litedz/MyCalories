@@ -20,7 +20,7 @@ To run MyCal on your local machine, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/mycal.git
+   git clone git@github.com:litedz/MyCalories.git
 
 
 2.Navigate to the project directory:
