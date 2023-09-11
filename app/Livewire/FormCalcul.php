@@ -5,7 +5,6 @@ namespace App\Livewire;
 use App\Models\profile;
 use App\Models\User;
 use App\Traits\SweatAlert;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -15,16 +14,27 @@ class FormCalcul extends Component
     use SweatAlert;
 
     public $weight = '';
+
     public $height = '';
+
     public $unitWeight = 'kg';
+
     public $unitHeight = 'cm';
+
     public $sex = 'men';
+
     public $age = '';
+
     public $activity = '';
+
     public $bmr;
+
     public $bmi;
+
     public $result = '';
+
     public $ResultShow = false;
+
     public $indiceBar = 50;
 
     protected $rules = [
@@ -38,14 +48,15 @@ class FormCalcul extends Component
 
     ];
 
-    public function Calculbmi():void
+    public function Calculbmi(): void
     {
         $this->validate();
         $this->ConvertUnit();
         $this->bmi = round($this->weight / (($this->height / 100) * ($this->height / 100)), 1);
         $this->Calculbmr();
     }
-    public function Calculbmr():void
+
+    public function Calculbmr(): void
     {
 
         if ($this->sex == 'woman') {
@@ -54,18 +65,19 @@ class FormCalcul extends Component
             $this->bmr = round((88.362 + 13.397 * $this->weight + 4.799 * $this->height - 5.677 * abs($this->age)) * $this->activity);
         }
 
-        $this->bmi >= 40 ?  $this->indiceBar = 100 : $this->indiceBar = ($this->bmi * 100) / 40;
+        $this->bmi >= 40 ? $this->indiceBar = 100 : $this->indiceBar = ($this->bmi * 100) / 40;
         // result of bmi
         $this->result = match (true) {
             $this->bmi < 18.5 => 'UNDERWEIGHT',
             $this->bmi > 18.5 && $this->bmi < 24.9 => 'NORMAL',
             $this->bmi > 25 && $this->bmi < 29.9 => 'Overweight',
             $this->bmi > 30 && $this->bmi < 34.9 => 'OBESE_2',
-            $this->bmi > 35  => 'OBESE_1',
+            $this->bmi > 35 => 'OBESE_1',
         };
         $this->ResultShow = true;
     }
-    public function ConvertUnit():void
+
+    public function ConvertUnit(): void
     {
         if ($this->unitWeight == 'pound') {
             $this->weight = $this->weight * 2.20;
@@ -74,12 +86,13 @@ class FormCalcul extends Component
             $this->height = $this->height * 0.39;
         }
     }
-    public function SaveProfile():void
+
+    public function SaveProfile(): void
     {
         $validData = $this->validate();
         $val = Validator::make(
-            ['bmi' => $this->bmi, 'bmr' => $this->bmr,],
-            ['bmi' => 'required', 'bmr' => 'required|numeric',],
+            ['bmi' => $this->bmi, 'bmr' => $this->bmr],
+            ['bmi' => 'required', 'bmr' => 'required|numeric'],
             ['required' => 'The :attribute field is required'],
         )->validate();
 
@@ -114,6 +127,7 @@ class FormCalcul extends Component
 
         $this->reset();
     }
+
     public function render()
     {
         return view('livewire.form-calcul');

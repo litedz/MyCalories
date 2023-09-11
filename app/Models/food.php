@@ -10,8 +10,9 @@ class food extends Model
 {
     use HasFactory;
 
-    protected $with=['cat'];
-    public function cat():BelongsTo
+    protected $with = ['cat'];
+
+    public function cat(): BelongsTo
     {
         return $this->belongsTo(categorie_food::class, 'categorie_food_id', 'id');
     }

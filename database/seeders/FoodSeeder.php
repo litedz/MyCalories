@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\food;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class FoodSeeder extends Seeder

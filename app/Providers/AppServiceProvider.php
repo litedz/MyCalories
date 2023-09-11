@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use Illuminate\Database\Schema\ForeignKeyDefinition;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,6 +19,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        
+
     }
 }

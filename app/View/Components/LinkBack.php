@@ -8,8 +8,6 @@ use Illuminate\View\Component;
 
 class LinkBack extends Component
 {
-
-
     /**
      * Create a new component instance.
      */

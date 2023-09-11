@@ -13,8 +13,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-
-    protected $with=['profile'];
+    protected $with = ['profile'];
 
     /**
      * The attributes that are mass assignable.
@@ -48,8 +47,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function profile():BelongsTo
+    public function profile(): BelongsTo
     {
-        return $this->belongsTo(profile::class,'profile_id','id');
+        return $this->belongsTo(profile::class, 'profile_id', 'id');
     }
 }

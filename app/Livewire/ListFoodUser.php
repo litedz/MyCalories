@@ -6,20 +6,23 @@ use App\Models\food;
 use App\Models\user_list;
 use App\Traits\SweatAlert;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class ListFoodUser extends Component
 {
     use SweatAlert;
+
     protected $rules = [
         'editQuantity' => 'required|integer',
         'editFood_id' => 'required|integer',
     ];
 
     public $lists;
+
     public $editName;
+
     public $editQuantity;
+
     public $editFood_id;
 
     public $list_id;
@@ -30,18 +33,22 @@ class ListFoodUser extends Component
     {
         $this->getLists();
     }
-    public  function dehydrate()
+
+    public function dehydrate()
     {
     }
+
     public function UpdateList()
     {
     }
+
     public function updatededitQuantity()
     {
         $this->validate();
         $food = food::find($this->editFood_id);
         $this->editKcal = intval(($this->editQuantity * $food->kcal) / $food->quantity);
     }
+
     public function EditAndUpdateList()
     {
         $this->validate();
@@ -57,6 +64,7 @@ class ListFoodUser extends Component
             $this->SweatAlert('Item Updated', 'info');
         }
     }
+
     public function DeleteFood($food_id, $list_id)
     {
 
@@ -74,17 +82,18 @@ class ListFoodUser extends Component
         $this->lists = collect(user_list::with('food')->where('user_id', auth()->user()->id)->get())->groupBy(function ($val) {
             return Carbon::parse($val->created_at)->format('m d');
         })->sortBy('created_at')->values();
-        // Calcul Total kcal  per day or month 
+        // Calcul Total kcal  per day or month
 
         foreach ($this->lists as $key => $value) {
             $totalKcal = 0;
             foreach ($value as $k => $itemInList) {
                 $totalKcal += $itemInList['kcal'];
             }
-            // Add to A Collection 
+            // Add to A Collection
             $this->lists[$key]['TotalKcal'] = $totalKcal;
         }
     }
+
     public function render()
     {
         return view('livewire.list-food-user');

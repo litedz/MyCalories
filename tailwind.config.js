@@ -3,7 +3,7 @@ import forms from '@tailwindcss/forms';
 const colors = require('tailwindcss/colors')
 /** @type {import('tailwindcss').Config} */
 export default {
-   
+   darkMode:"class",
     content: [
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
@@ -15,6 +15,7 @@ export default {
         'bg-yellow-500',
         'bg-yellow-300',
         'bg-green-600',
+        'bg-slate-700',
         
       ],
     theme: {

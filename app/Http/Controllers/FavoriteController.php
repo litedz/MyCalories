@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\favorite;
 use App\Http\Requests\StorefavoriteRequest;
 use App\Http\Requests\UpdatefavoriteRequest;
+use App\Models\favorite;
 
 class FavoriteController extends Controller
 {

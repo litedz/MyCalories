@@ -8,15 +8,16 @@ use Illuminate\View\Component;
 use Livewire\Attributes\On;
 
 class navbar extends Component
-{    
-
-    public $test ='xxx';
+{
+    public $test = 'xxx';
 
     #[On('kcal-test')]
-    public function ccccc()  {
-        
-       dd('xxx');
+    public function ccccc()
+    {
+
+        dd('xxx');
     }
+
     /**
      * Get the view / contents that represent the component.
      */

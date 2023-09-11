@@ -3,7 +3,6 @@
 namespace Tests\Feature\Livewire;
 
 use App\Livewire\Favorite;
-use App\Livewire\Foods;
 use App\Models\categorie_food;
 use App\Models\food;
 use App\Models\User;

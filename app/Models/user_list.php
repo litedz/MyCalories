@@ -9,18 +9,20 @@ class user_list extends Model
 {
     use HasFactory;
 
-
     protected $casts = [
-       
+
     ];
 
     // protected $with =['user','food'];
-    protected $fillable=['user_id','food_id','kcal'];
+    protected $fillable = ['user_id', 'food_id', 'kcal'];
 
-    public function user()  {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-    public function food()  {
-       return  $this->belongsTo(food::class);
+
+    public function food()
+    {
+        return $this->belongsTo(food::class);
     }
 }

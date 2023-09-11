@@ -25,7 +25,7 @@ class FoodFactory extends Factory
             'code' => fake()->ean13(),
             'kcal' => fake()->numberBetween(1, 1000),
             'quantity' => fake()->numberBetween(1, 200),
-            'unit' => fake()->randomElement(['g', 'kg','l','ml']),
+            'unit' => fake()->randomElement(['g', 'kg', 'l', 'ml']),
 
         ];
     }

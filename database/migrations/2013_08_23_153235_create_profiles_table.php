@@ -21,8 +21,8 @@ return new class extends Migration
             $table->float('weight')->nullable();
             $table->string('unitWeight')->nullable();
             $table->integer('age')->nullable();
-            $table->enum('activity',['SUPER','HIGH','INTERMEDIATE','NORMAL','SLOW'])->nullable();
-            $table->enum('result',['UNDERWEIGHT','NORMAL','OVERWEIGHT','OBESE_1','OBESE_2'])->nullable();
+            $table->enum('activity', ['SUPER', 'HIGH', 'INTERMEDIATE', 'NORMAL', 'SLOW'])->nullable();
+            $table->enum('result', ['UNDERWEIGHT', 'NORMAL', 'OVERWEIGHT', 'OBESE_1', 'OBESE_2'])->nullable();
             $table->timestamps();
         });
     }

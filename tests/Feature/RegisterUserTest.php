@@ -3,14 +3,14 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class RegisterUserTest extends TestCase
 {
     public $email;
+
     public $password;
+
     /**
      * A basic feature test example.
      */
@@ -26,15 +26,15 @@ class RegisterUserTest extends TestCase
         ]);
         $response->assertRedirect('/dashboard');
     }
+
     public function test_user__can_login(): void
     {
 
-        $user=user::factory()->create();
+        $user = user::factory()->create();
         $response = $this->post('/login', [
             'email' => $user->email,
             'password' => 'password',
         ]);
         $response->assertRedirect('/dashboard');
     }
-
 }

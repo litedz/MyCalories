@@ -4,9 +4,6 @@ namespace Tests\Feature\Livewire;
 
 use App\Livewire\FormCalcul;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -18,6 +15,7 @@ class FormCalculTest extends TestCase
         Livewire::test(FormCalcul::class)
             ->assertStatus(200);
     }
+
     public function test_require_attributes()
     {
         Livewire::test(FormCalcul::class)
@@ -31,6 +29,7 @@ class FormCalculTest extends TestCase
             ->call('Calculbmi')
             ->assertHasErrors(['weight', 'height', 'unitWeight', 'unitHeight', 'sex', 'age', 'activity']);
     }
+
     public function test_user_can_calcul_bmi_and_bmr()
     {
         Livewire::test(FormCalcul::class)
@@ -44,10 +43,10 @@ class FormCalculTest extends TestCase
             ->call('Calculbmi')
             ->assertStatus(200);
     }
+
     public function test_require_result_for_save_profile()
     {
         $this->actingAs(User::factory()->create());
-
 
         Livewire::test(FormCalcul::class)
             ->set('bmi', '')
@@ -55,6 +54,7 @@ class FormCalculTest extends TestCase
             ->call('SaveProfile')
             ->assertHasErrors();
     }
+
     public function test_save_profile()
     {
 
@@ -67,13 +67,14 @@ class FormCalculTest extends TestCase
             ->set('unitHeight', 'cm')
             ->set('sex', 'men')
             ->set('age', 28)
-            ->set('activity', "1.5")
+            ->set('activity', '1.5')
             ->set('bmi', 39)
             ->set('bmr', 4500)
-            ->set('result', "obese")
+            ->set('result', 'obese')
             ->call('SaveProfile')
             ->assertHasNoErrors();
     }
+
     public function test_convert_unit_pound_and_inch()
     {
 

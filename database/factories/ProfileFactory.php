@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Enums\activitys;
 use App\Enums\BMI_categorie;
-use App\Models\favorite;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
