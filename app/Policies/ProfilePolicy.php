@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\profile;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ProfilePolicy
 {
@@ -28,7 +29,7 @@ class ProfilePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return Auth::check();
     }
 
     /**

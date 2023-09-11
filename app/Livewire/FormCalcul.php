@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\profile;
 use App\Models\User;
 use App\Traits\SweatAlert;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -87,8 +88,18 @@ class FormCalcul extends Component
         }
     }
 
-    public function SaveProfile(): void
+    public function SaveProfile()
     {
+
+        
+        if (Gate::denies('create','App\\Models\User')) {
+          $this->SweatAlert('You most login to save profile','warning');
+          return false;
+        }
+       
+        // $this->authorize('create', User::class);
+
+
         $validData = $this->validate();
         $val = Validator::make(
             ['bmi' => $this->bmi, 'bmr' => $this->bmr],
