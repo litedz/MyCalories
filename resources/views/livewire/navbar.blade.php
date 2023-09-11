@@ -1,10 +1,11 @@
-<div x-data="{ open: false, openMenuMobile: false, OpenProfile: true, OpenSubMenuProfile: false }">
+<div x-data="{ open: false, openMenuMobile: false, OpenProfile: true, OpenSubMenuProfile: false, authUser: {{ auth()->check() }} }">
     <nav class="bg-gray-800 mb-4">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div class="relative flex h-16 items-center justify-between">
                 <div class="absolute inset-y-0 left-0 flex items-center ">
                     <!-- Mobile menu button-->
-                    <button type="button" @click="openMenuMobile =!openMenuMobile"
+
+                    <button type="button" @click="openMenuMobile = !openMenuMobile"
                         class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white md:hidden lg:hidden"
                         aria-controls="mobile-menu" aria-expanded="false">
                         <span class="absolute -inset-0.5"></span>
@@ -22,6 +23,10 @@
                     </button>
                 </div>
                 <div class="flex flex-1 items-center justify-start sm:items-stretch sm:justify-around gap-5">
+                    <div class="login" x-show="!authUser" x-cloak>
+                        <a href="{{route('login')}}" class="btn-primary" type="button">Login</a>
+                        <a href="{{route('register')}}" class="btn-primary" type="button">Sign up</a>
+                    </div>
                     <div class="flex flex-shrink-0 items-center">
                         <img class="h-8 w-auto rounded-full" src="{{ asset('images/logo.png') }}" alt="Your Company">
                     </div>
@@ -30,7 +35,7 @@
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                             <a href="{{ route('welcome') }}" wire:navigate
                                 class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
-                                aria-current="page">Home</a>
+                                aria-current="page">Home <div x-text="auth" class="text-emerald-500"></div></a>
                             <a href="{{ route('calcul.bmi') }}" wire:navigate
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">BMI</a>
                             <a href="{{ route('categories') }}" wire:navigate
@@ -39,8 +44,7 @@
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Favorite</a>
 
 
-        
-                        
+
                             <a href="#" wire:key='{{ rand() }}' x-bind:class="$wire.bg_limite"
                                 class="hover:bg-gray-700  text-white hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                                 {{ $kcalDay }} <span class="capitalize">Kcal/day</span>
@@ -52,7 +56,7 @@
                         </div>
                     </div>
                 </div>
-                <div x-show="true"
+                <div x-show="authUser" x-cloak wire:key='{{ rand() }}'
                     class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                     <button type="button"
                         class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -89,7 +93,7 @@
                     From: "transform opacity-100 scale-100"
                     To: "transform opacity-0 scale-95"
                 -->
-                        <div x-show="OpenSubMenuProfile"
+                        <div x-show="OpenSubMenuProfile"x-cloak
                             class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                             tabindex="-1">
@@ -97,8 +101,9 @@
                             <a wire:navigate href="{{ route('user.listFood') }}"
                                 class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                                 id="user-menu-item-0"><span class="fa fa-list text-xs"></span> Your List</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                tabindex="-1" id="user-menu-item-1">Settings</a>
+                            <a href="{{ route('profile.edit') }}" wire:navigate
+                                class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                                id="user-menu-item-1">Settings</a>
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
                                 tabindex="-1" id="user-menu-item-2">Sign out</a>
                         </div>
@@ -108,7 +113,7 @@
         </div>
 
         <!-- Mobile menu, show/hide based on menu state. -->
-        <div class="transition-all duration-300" id="mobile-menu" x-show="openMenuMobile" x-transition>
+        <div class="transition-all duration-300" id="mobile-menu" x-show="openMenuMobile" x-transition x-cloak>
             <div class="space-y-1 px-2 pb-3 pt-2">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <a href="#" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"

@@ -22,7 +22,10 @@
 
     @livewire('navbar')
 
-    {{ $slot }}
+    <div>
+        {{ $slot }} 
+    </div>
+   
 
     
     @livewireScripts

@@ -1,6 +1,6 @@
 <div>
     <form action="" class="relative bg-none" x-data="formBM">
-        <button type="button" class="btn-primary" wire:click="$wire.reset('weight')">Click me </button>
+        
         <div class="w-1/4 sm:w-1/2 mx-auto bg-slate-200 p-4 rounded grid gap-10 capitalize">
             <div class="w-full border-b-[1px] border-gray-400 p-2">
                 <h1 class="text-center text-3xl">Calcul Your BMI and MBR</h1>
