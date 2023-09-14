@@ -1,6 +1,6 @@
 <div>
     <div class="list" x-data="{showFormEdit:false}">
-        <div class="w-full h-full fixed top-0 left-0 edit-form z-30" x-show="showFormEdit" x-transition>
+        <div class="w-full h-full fixed top-0 left-0 edit-form z-30" x-show="showFormEdit" x-transition x-cloak>
             <div class="overlay w-full h-full absolute bg-slate-600 opacity-50 z-10"></div>
             <div class="w-2/5 mx-auto relative z-20 top-1/4">
                 <form action="" class="bg-white p-4 rounded grid gap-5">
@@ -32,13 +32,13 @@
         <div class="w-4/5 mx-auto sm:w-full sm:p-2">
             <div class="flex flex-col items gap-5 p-4 sm:p-2">
                 @foreach ($lists as $list)
-                <div class="date text-sm mb-4 border-b-2 font-semibold  pb-4">
-                    <span class="bg-emerald-600 p-2  rounded text-white">
+                <div class="date  mb-4 border-b-2 font-semibold  py-4 text-center bg-emerald-400 text-gray-800 text-base tracking-wide w-full">
+                    {{-- <span class="bg-emerald-600 p-2  rounded text-white w-full"> --}}
                         @php
                         echo date_create($list->first()->created_at)->format('Y-m-d')."
                         (".date_create($list->first()->created_at)->format('l').')';
                         @endphp
-                    </span>
+                    {{-- </span> --}}
                 </div>
 
                 <div class="grid item">

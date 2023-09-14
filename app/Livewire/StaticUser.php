@@ -79,7 +79,7 @@ class StaticUser extends Component
         // chart monthly
         $chart2 = new SimpleChar;
         $chart2->options(['color' => '#ff0000','backgroundColor' => '#ff0000']);
-        $chart2->dataset('', 'line', $this->kcals)->color('green')->dashed([5]);
+        $chart2->dataset('', 'line', $this->kcals)->color('green');
         $chart2->width(500);
         $chart2->height(500);
         $chart2->title('Calories Months',22,"#1f2937","bold");

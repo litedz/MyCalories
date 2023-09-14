@@ -1,7 +1,7 @@
 <div id="window.{{ $chart->id }}">
 
 
-    <div class="chart  mx-auto grid grid-cols-1">
+    <div class="chart w-11/12 mx-auto grid grid-cols-1 ">
         <div>
             {!! $chart->container() !!}
         </div>
