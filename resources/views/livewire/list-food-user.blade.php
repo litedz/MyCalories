@@ -32,7 +32,7 @@
         <div class="w-4/5 mx-auto sm:w-full sm:p-2">
             <div class="flex flex-col items gap-5 p-4 sm:p-2">
                 @foreach ($lists as $list)
-                <div class="date  mb-4 border-b-2 font-semibold  py-4 text-center bg-emerald-400 text-gray-800 text-base tracking-wide w-full">
+                <div class="date mb-4 border-b-2 font-semibold py-4 text-center bg-gradient-to-t from-emerald-400 to-emerald-600/80 text-gray-800 text-base tracking-wide w-full rounded-full">
                     {{-- <span class="bg-emerald-600 p-2  rounded text-white w-full"> --}}
                         @php
                         echo date_create($list->first()->created_at)->format('Y-m-d')."
