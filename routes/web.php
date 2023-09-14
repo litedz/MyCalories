@@ -7,7 +7,9 @@ use App\Livewire\Favorite;
 use App\Livewire\Foods;
 use App\Livewire\FormCalcul;
 use App\Livewire\ListFoodUser;
+use App\Livewire\StaticUser;
 use App\Livewire\Welcome;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,7 +28,7 @@ Route::get('/bmi', FormCalcul::class)->name('calcul.bmi');
 Route::get('categories', Categories::class)->name('categories');
 Route::get('food/{id}', Foods::class)->where(['id' => '[0-9]+'])->name('food');
 Route::get('favorite', Favorite::class)->name('favorite')->middleware('auth');
-Route::get('favorite', Favorite::class)->name('favorite')->middleware('auth');
+Route::get('/static', StaticUser::class)->name('staticUser');
 
 Route::middleware('auth')->group(function () {
 });
@@ -44,4 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+Route::get('test', function () {
+    dd(Carbon::now()->month);
+});
 require __DIR__ . '/auth.php';

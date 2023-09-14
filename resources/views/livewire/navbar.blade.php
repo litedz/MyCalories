@@ -45,8 +45,9 @@
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Foods</a>
                             <a href="{{ route('favorite') }}" wire:navigate
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Favorite</a>
-
-
+                                <a href="{{route('staticUser')}}" 
+                                x-show='authUser'
+                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Static</a>
 
                                 
                             <a href="#" wire:key='{{ rand() }}' x-bind:class="$wire.bg_limite"

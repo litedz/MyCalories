@@ -9,6 +9,7 @@ class user_list extends Model
 {
     use HasFactory;
 
+    protected $guarded;
     protected $casts = [
 
     ];
