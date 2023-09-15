@@ -109,8 +109,8 @@
                             class="font-medium w-14 sm:w-auto bg-slate-600 hover:bg-slate-700 dark:bg-slate-600 dark:hover:bg-slate-400 text-white p-2 rounded dark:text-blue-500"
                             @click="showFormEdit = true;$wire.set('editName','{{$fav->food->name}}');$wire.set('editFood_id','{{$fav->food->id}}')">Edit</button>
                         <button type="button"
-                            class="font-medium rounded-full px-2 px-3 w-14 sm:w-auto bg-sky-600 hover:bg-sky-700 dark:bg-slate-600 dark:hover:bg-slate-400 text-white p-2 dark:text-blue-500 "
-                            @click="showFormEdit = true;$wire.set('editName','{{$fav->food->name}}');$wire.set('editFood_id','{{$fav->food->id}}')"><span class="fa fa-plus"></span></button>
+                            class="font-medium rounded-full px-3 w-14 sm:w-auto bg-sky-600 hover:bg-sky-700 dark:bg-slate-600 dark:hover:bg-slate-400 text-white p-2 dark:text-blue-500 "
+                            @click="$dispatch('Add-to-list',1)"><span class="fa fa-plus"></span></button>
                     </td>
                 </tr>
                 @endforeach

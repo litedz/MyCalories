@@ -8,6 +8,7 @@ use App\Models\user_list;
 use App\Traits\SweatAlert;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Foods extends Component
@@ -74,7 +75,8 @@ class Foods extends Component
         $this->editKcal = intval(($this->editQuantity * $food->kcal) / $food->quantity);
     }
 
-    public function AddFoodToList($id, user_list $userlist)
+    #[On('Add-to-list')]
+    public function AddFoodToList($id)
     {
 
         $this->authorize('create', 'App\\Models\user_list');
