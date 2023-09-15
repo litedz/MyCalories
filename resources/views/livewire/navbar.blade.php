@@ -1,4 +1,4 @@
-<div x-data="{ open: false, openMenuMobile: false, OpenProfile: true, OpenSubMenuProfile: false, authUser: {{ auth()->check() }} }" wire:key='{{ rand() }}'>
+<div x-data="{ open: false, openMenuMobile: false, OpenProfile: true, OpenSubMenuProfile: false, authUser: {{ auth()->check() }} }">
     <nav class="bg-gray-800 mb-4">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div class="relative flex h-16 items-center justify-between">
@@ -22,8 +22,7 @@
                         </svg>
                     </button>
                 </div>
-                <div class="flex flex-1 items-center justify-start sm:items-stretch sm:justify-around gap-5"
-                   >
+                <div class="flex flex-1 items-center justify-start sm:items-stretch sm:justify-around gap-5">
                     <div class="login" x-cloak x-show='!{{ auth()->check() }}' >
                         <a href="{{ route('login') }}" class="btn-primary" type="button" >Login</a>
                         <a href="{{ route('register') }}" class="btn-primary" type="button" >Sign

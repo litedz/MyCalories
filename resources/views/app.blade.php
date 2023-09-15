@@ -28,10 +28,16 @@
     {{-- navbar --}}
     @livewire('navbar')
 
-    <div class="dark:bg-gray-800">
+    <div class="dark:bg-gray-800 py-4">
 
         {{ $slot }}
     </div>
+    
+    @livewireScripts
+
+
+
+
 
     <script>
         document.addEventListener('alpine:init', () => {
@@ -41,14 +47,13 @@
                     this.darkMode = !this.darkMode;
                 },
             }))
-        })
+        });
         window.addEventListener('testwal', function(e) {
             let data = e.detail[0];
             Swal.fire(data.title, 'Click to hide window', data.icon)
         });
     </script>
 
-    @livewireScripts
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>

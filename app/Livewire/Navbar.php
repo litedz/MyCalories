@@ -32,7 +32,7 @@ class Navbar extends Component
 
         $this->kcalDay = 0;
         $getKcalByday = user_list::whereDate('created_at', Carbon::today()->toDateTimeString())->get();
-        $getLimitKcal = profile::select('bmr')->where('id', auth()->user()->id)->first();
+        $getLimitKcal = profile::select('bmr')->where('id', auth()->user()->profile_id)->first();
         foreach ($getKcalByday as $key => $value) {
             $this->kcalDay = $this->kcalDay + $value->kcal;
         }
