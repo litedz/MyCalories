@@ -167,10 +167,4 @@
     </form>
 </div>
 
-<script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('formBM', () => ({
 
-        }))
-    })
-</script>

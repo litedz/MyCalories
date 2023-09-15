@@ -18,41 +18,48 @@
     @livewireStyles
 </head>
 
-<body x-data="{ darkMode: false }" :class="darkMode && 'dark'" x-ref="AppRef">
-
+<body x-data="compo" :class="darkMode && 'dark'" id="$id('text-input')">
+    {{-- Button Enable dark Mode --}}
     <div class="mode flex flex-row gap-5 text-white bg-indigo-400 rounded-2xl p-4 w-auto fixed top-2 right-0">
-        <button type="button" @click="darkMode =!darkMode" class="">
-            <span class="fa fa-moon bg-slate-400 fa  p-2 rounded-full"></span></button>
-        <button type="button" @click="darkMode =!darkMode" class="">
-            <span class="fa fa-sun bg-slate-400 fa  p-2 rounded-full"></span></button>
+        <button type="button">
+            <span class="fa fa-moon bg-slate-400 fa  p-2 rounded-full" @click="toggleMode"></span>
+        </button>
     </div>
-
+    {{-- navbar --}}
     @livewire('navbar')
-
-
 
     <div class="dark:bg-gray-800">
 
         {{ $slot }}
     </div>
 
-
-
-    @livewireScripts
-
-    <script src="https://unpkg.com/vue"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-
-
     <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('compo', () => ({
+                darkMode: false,
+                toggleMode() {
+                    this.darkMode = !this.darkMode;
+                },
+            }))
+        })
         window.addEventListener('testwal', function(e) {
             let data = e.detail[0];
             Swal.fire(data.title, 'Click to hide window', data.icon)
         });
     </script>
+
+    @livewireScripts
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+
+
+
 </body>
 
 </html>

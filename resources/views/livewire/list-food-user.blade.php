@@ -1,4 +1,4 @@
-<div class=""  x-data="{darkMode: false }">
+<div class="">
     <div class="list" x-data="{ showFormEdit: false }"  class="dark:bg-gray-800">
         
         <div class="w-full h-full fixed top-0 left-0 edit-form z-30" x-show="showFormEdit" x-transition x-cloak>
