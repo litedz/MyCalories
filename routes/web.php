@@ -9,7 +9,6 @@ use App\Livewire\FormCalcul;
 use App\Livewire\ListFoodUser;
 use App\Livewire\StaticUser;
 use App\Livewire\Welcome;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +32,7 @@ Route::get('/static', StaticUser::class)->name('staticUser');
 Route::middleware('auth')->group(function () {
 });
 
-Route::get('/dashboard',Dashboard::class)->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', Dashboard::class)->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
 
@@ -47,7 +46,4 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('test', function () {
-    dd(Carbon::now()->month);
-});
 require __DIR__ . '/auth.php';

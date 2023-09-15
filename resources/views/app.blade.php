@@ -18,16 +18,26 @@
     @livewireStyles
 </head>
 
-<body>
+<body x-data="{ darkMode: false }" :class="darkMode && 'dark'" x-ref="AppRef">
+
+    <div class="mode flex flex-row gap-5 text-white bg-indigo-400 rounded-2xl p-4 w-auto fixed top-2 right-0">
+        <button type="button" @click="darkMode =!darkMode" class="">
+            <span class="fa fa-moon bg-slate-400 fa  p-2 rounded-full"></span></button>
+        <button type="button" @click="darkMode =!darkMode" class="">
+            <span class="fa fa-sun bg-slate-400 fa  p-2 rounded-full"></span></button>
+    </div>
 
     @livewire('navbar')
 
 
-    {{ $slot }}
+
+    <div class="dark:bg-gray-800">
+
+        {{ $slot }}
+    </div>
 
 
 
- 
     @livewireScripts
 
     <script src="https://unpkg.com/vue"></script>

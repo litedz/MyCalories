@@ -87,18 +87,7 @@ class ListFoodUser extends Component
 
     public function getLists()
     {
-        // if ($this->loadmore) {
-        //     $this->lists = collect(user_list::with('food')
-        //         ->where('user_id', auth()->user()->id)
-        //         ->where('id', '>', $this->LastItemId)
-        //         ->limit(5)
-        //         ->get())
-        //         ->groupBy(function ($val) {
-        //             return Carbon::parse($val->created_at)->format('m d');
-        //         })
-        //         ->sortBy('created_at')
-        //         ->values();
-        // }
+    
         $this->lists = collect(user_list::with('food')->where('user_id', auth()->user()->id)->limit($this->loadeMoreNum)->get())->groupBy(function ($val) {
             return Carbon::parse($val->created_at)->format('m d');
         })->sortBy('created_at')->values();
@@ -108,7 +97,6 @@ class ListFoodUser extends Component
             $this->loadmore = false;
         }
         // Calcul Total kcal  per day or month
-
 
         foreach ($this->lists as $key => $value) {
             $totalKcal = 0;

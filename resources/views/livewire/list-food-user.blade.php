@@ -1,5 +1,6 @@
-<div>
-    <div class="list" x-data="{ showFormEdit: false }">
+<div class=""  x-data="{darkMode: false }">
+    <div class="list" x-data="{ showFormEdit: false }"  class="dark:bg-gray-800">
+        
         <div class="w-full h-full fixed top-0 left-0 edit-form z-30" x-show="showFormEdit" x-transition x-cloak>
             <div class="overlay w-full h-full absolute bg-slate-600 opacity-50 z-10"></div>
             <div class="w-2/5 mx-auto relative z-20 top-1/4">
@@ -46,18 +47,19 @@
                         <div class="item">
                             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                                    <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+                                    <thead
+                                        class="dark:text-gray-400  bg-slate-400 text-white text-xs uppercase dark:bg-slate-950">
                                         <tr>
-                                            <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                            <th scope="col" class="px-6 py-3">
                                                 Food name
                                             </th>
                                             <th scope="col" class="px-6 py-3">
                                                 quantity
                                             </th>
-                                            <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                            <th scope="col" class="px-6 py-3">
                                                 Unit
                                             </th>
-                                            <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                            <th scope="col" class="px-6 py-3">
                                                 kcal
                                             </th>
                                             <th scope="col" class="px-6 py-3 text-center">
@@ -68,22 +70,22 @@
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="dark:bg-gray-800">
                                         @foreach ($list as $item)
                                             {{-- To avoid Null value --}}
                                             @if (!$loop->last)
-                                                <tr class="border-b border-gray-200 dark:border-gray-700">
+                                                <tr class="border-b border-gray-200 ">
                                                     <th scope="row"
-                                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                        class="px-6 py-4 font-medium whitespace-nowrap  dark:text-white ">
                                                         {{ $item->food->name }}
                                                     </th>
                                                     <td class="px-6 py-4">
                                                         {{ $item->food->quantity }}
                                                     </td>
-                                                    <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                                                    <td class="px-6 py-4">
                                                         {{ $item->food->unit }}
                                                     </td>
-                                                    <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                                                    <td class="px-6 py-4">
                                                         {{ $item->kcal }}
                                                     </td>
                                                     <td class="px-6 py-4 text-center">
@@ -101,7 +103,7 @@
                                                         </button>
                                                     </td>
                                                     @if ($loop->index == 0)
-                                                        <th class="text-center bg-slate-200" colspan="2"
+                                                        <th class="text-center" colspan="2"
                                                             rowspan="{{ $list->count() }}">
                                                             {{ $list['TotalKcal'] }} kcal</th>
                                                     @endif
