@@ -7,10 +7,11 @@ use App\Models\user_list;
 use App\Traits\SweatAlert;
 use Carbon\Carbon;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ListFoodUser extends Component
 {
-    use SweatAlert;
+    use SweatAlert, WithPagination;
 
     protected $rules = [
         'editQuantity' => 'required|integer',
@@ -28,6 +29,9 @@ class ListFoodUser extends Component
     public $list_id;
 
     public $editKcal;
+    public $loadmore = true;
+
+    public int $loadeMoreNum = 1;
 
     public function mount()
     {
@@ -40,6 +44,10 @@ class ListFoodUser extends Component
 
     public function UpdateList()
     {
+    }
+    public function updatedLoadeMoreNum()
+    {
+        $this->getLists();
     }
 
     public function updatededitQuantity()
@@ -76,13 +84,31 @@ class ListFoodUser extends Component
         }
     }
 
+
     public function getLists()
     {
-
-        $this->lists = collect(user_list::with('food')->where('user_id', auth()->user()->id)->get())->groupBy(function ($val) {
+        // if ($this->loadmore) {
+        //     $this->lists = collect(user_list::with('food')
+        //         ->where('user_id', auth()->user()->id)
+        //         ->where('id', '>', $this->LastItemId)
+        //         ->limit(5)
+        //         ->get())
+        //         ->groupBy(function ($val) {
+        //             return Carbon::parse($val->created_at)->format('m d');
+        //         })
+        //         ->sortBy('created_at')
+        //         ->values();
+        // }
+        $this->lists = collect(user_list::with('food')->where('user_id', auth()->user()->id)->limit($this->loadeMoreNum)->get())->groupBy(function ($val) {
             return Carbon::parse($val->created_at)->format('m d');
         })->sortBy('created_at')->values();
+
+
+        if ($this->lists->count() < $this->loadeMoreNum) {
+            $this->loadmore = false;
+        }
         // Calcul Total kcal  per day or month
+
 
         foreach ($this->lists as $key => $value) {
             $totalKcal = 0;
@@ -93,6 +119,7 @@ class ListFoodUser extends Component
             $this->lists[$key]['TotalKcal'] = $totalKcal;
         }
     }
+
 
     public function render()
     {
