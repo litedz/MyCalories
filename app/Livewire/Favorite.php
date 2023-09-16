@@ -61,6 +61,7 @@ class Favorite extends Component
             $this->SweatAlert('Item Add to the list', 'success');
         }
     }
+
     public function EditFavoriteAndAddToList()
     {
         $this->authorize('create', 'App\Models\user_list');
@@ -79,13 +80,13 @@ class Favorite extends Component
         }
     }
 
-
     public function RemoveFoodFromFav($id)
     {
         $DeleteFood = ModelsFavorite::where('food_id', $id)->where('user_id', auth()->user()->id)->delete();
         $DeleteFood ? $this->SweatAlert('food removed', 'info') : '';
         $this->getFavorites();
     }
+
     public function RemoveAllFav(array $list)
     {
 
