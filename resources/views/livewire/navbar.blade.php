@@ -38,7 +38,7 @@
                             <a href="{{ route('welcome') }}" wire:navigate
                                 class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
                                 aria-current="page">Home <div x-text="auth" class="text-emerald-500"></div></a>
-                            <a href="{{ route('calcul.bmi') }}" wire:navigate
+                            <a href="{{ route('calcul.bmi') }}" wire:navigate.hover
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">BMI</a>
                             <a href="{{ route('categories') }}" wire:navigate
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Foods</a>

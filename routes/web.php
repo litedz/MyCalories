@@ -27,7 +27,6 @@ Route::get('/bmi', FormCalcul::class)->name('calcul.bmi');
 Route::get('categories', Categories::class)->name('categories');
 Route::get('food/{id}', Foods::class)->where(['id' => '[0-9]+'])->name('food');
 Route::get('favorite', Favorite::class)->name('favorite')->middleware('auth');
-Route::get('/static', StaticUser::class)->name('staticUser');
 
 Route::middleware('auth')->group(function () {
 });
@@ -35,9 +34,10 @@ Route::middleware('auth')->group(function () {
 Route::get('/dashboard', Dashboard::class)->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-
+    
     Route::get('favorite', Favorite::class)->name('favorite');
     Route::get('/lists', ListFoodUser::class)->name('user.listFood');
+    Route::get('/static', StaticUser::class)->name('staticUser');
 
     // profile Routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

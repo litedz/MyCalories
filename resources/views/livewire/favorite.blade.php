@@ -1,5 +1,5 @@
 <div>
-
+    
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-10/12 mx-auto dark:shadow-slate-400 dark:shadow m-4"
         x-data="FavoriteCompo" x-cloak>
         <!-- edit form  -->
@@ -36,19 +36,19 @@
         </div>
         <!-- end edit form -->
         <div class="">
-            <button type="button" class="btn-primary !bg-red-600 my-4" x-show="BtnRemoveAll"
+            <button type="button" class="btn-primary bg-red-600 my-4 w-28" x-show="BtnRemoveAll"
             wire:key='{{rand()}}'
                 @click="RestorStateEvent;$wire.RemoveAllFav(ListId)">Remove all</button>
+             
         </div>
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="p-4">
                         <div class="flex items-center">
                             {{-- check All Items --}}
                             <input id="checkbox-all" type="checkbox" @click="CheckallItems" x-ref="test"
-                            wire:key='{{rand()}}'
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            wire:key='{{rand()}}' class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             <label for="checkbox-all" class="sr-only">checkbox</label>
                         </div>
                     </th>
@@ -71,7 +71,7 @@
                     <th scope="col" class="px-6 py-3">
                         unit
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 text-center">
                         Action
                     </th>
                 </tr>
@@ -84,7 +84,7 @@
                 @else
                     @foreach ($favorite as $fav)
                         <tr wire:key='{{ $fav->id }}'
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 dark:hover:bg-gray-900">
                             <td class="w-4 p-4">
                                 <div class="flex items-center">
                                     <input id="checkbox-table-1" type="checkbox" x-bind:checked="checkAll"
@@ -114,7 +114,7 @@
                                 {{ $fav->food->unit }}
                             </td>
                             {{-- actions --}}
-                            <td class="px-6 py-4 gap-5 flex flex-col sm:flex-row">
+                            <td class="px-6 py-4 gap-5 flex flex-col sm:flex-row justify-center">
                                 <button type="button"
                                     class="font-medium bg-red-600 hover:bg-red-700 dark:bg-slate-600 dark:hover:bg-slate-400 text-white p-2 rounded dark:text-blue-500"
                                     wire:click='RemoveFoodFromFav({{ $fav->food->id }})'>Remove</button>

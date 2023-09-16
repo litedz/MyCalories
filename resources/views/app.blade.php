@@ -26,23 +26,22 @@
         </button>
     </div>
     {{-- navbar --}}
-    @livewire('navbar')
+    <div>
+    <livewire:navbar />
 
-    <div class="dark:bg-gray-800 py-4">
-
+</div>
+    <div class="dark:bg-gray-800 py-4" >
+        
         {{ $slot }}
     </div>
     
     @livewireScripts
 
-
-
-
-
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('compo', () => ({
                 darkMode: false,
+                loadingPage:false;
                 toggleMode() {
                     this.darkMode = !this.darkMode;
                 },

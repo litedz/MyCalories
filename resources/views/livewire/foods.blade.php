@@ -31,12 +31,12 @@
                 </form>
             </div>
         </div>
-        <div class="text-4xl text-center m-4">{{$foods->first()->cat->name}}</div>
+        <div class="text-4xl text-center m-4 dark:text-slate-300">{{$foods->first()->cat->name}}</div>
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                <div class="overflow-hidden">
-                    <table class="min-w-full text-left text-sm font-light p-4  border-2 rounded-lg ">
-                        <thead class="border-b bg-white font-medium capitalize">
+                <div class="overflow-hidden rounded dark:border-slate-800">
+                    <table class="min-w-full text-left text-sm font-light p-4  border-2  ">
+                        <thead class=" bg-white font-medium capitalize dark:bg-gray-600 dark:border-gray-500 dark:text-slate-300">
                             <tr>
                                 <th scope="col" class="px-6 py-4 ">#</th>
                                 <th scope="col" class="px-6 py-4 ">Name</th>
@@ -49,7 +49,7 @@
                                 <th scope="col" class="px-6 py-4 ">Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="dark:bg-slate-700 bg-neutral-100 dark:text-slate-300">
                             @foreach ($foods as $food)
                             @php
                             // check if is in favorite list
@@ -57,7 +57,7 @@
                             @endphp
 
 
-                                <tr class="border-b bg-neutral-100 " x-data="{favorite:{{$IsLiked}}}">
+                                <tr class="" x-data="{favorite:{{$IsLiked}}}">
 
                                     <td class="whitespace-nowrap px-6 py-4 font-medium">{{$loop->index+1}}</td>
                                     <td class="whitespace-nowrap px-6 py-4">{{$food->name}}</td>

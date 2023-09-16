@@ -5,8 +5,8 @@ namespace App\Livewire;
 use App\Charts\SimpleChar;
 use App\Models\user_list;
 use Carbon\Carbon;
+use Livewire\Attributes\Lazy;
 use Livewire\Component;
-
 class StaticUser extends Component
 {
     public array $days = [''];
@@ -58,8 +58,10 @@ class StaticUser extends Component
         }
     }
 
+
     public function render()
     {
+
 
         foreach ($this->dataBymonths as $key => $value) {
             array_push($this->months, date_create($value->first()->created_at)->format('M'));
@@ -78,7 +80,6 @@ class StaticUser extends Component
         $chart->labels($this->days);
         $chart->dataset('Calories days', 'line', $this->kcals)->color('blue');
         $chart->title('Calories daily', 22, '#1f2937', 'bold');
-
         // chart monthly
         $chart2 = new SimpleChar;
         $chart2->options(['color' => '#ff0000', 'backgroundColor' => '#ff0000']);
@@ -87,6 +88,7 @@ class StaticUser extends Component
         $chart2->height(500);
         $chart2->title('Calories Months', 22, '#1f2937', 'bold');
         $chart2->labels($this->months);
+
 
         return view('livewire.static-user', [
             'chart' => $chart,
