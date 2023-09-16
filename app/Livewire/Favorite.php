@@ -13,6 +13,7 @@ class Favorite extends Component
     use SweatAlert;
 
     public $favorite;
+
     public $editQuantity;
 
     public $editFood_id;
@@ -35,11 +36,30 @@ class Favorite extends Component
     {
         $this->favorite = ModelsFavorite::where('user_id', auth()->user()->id)->get();
     }
-        public function updatededitQuantity()
+
+    public function updatededitQuantity()
     {
         $this->validate();
         $food = food::find($this->editFood_id);
         $this->editKcal = intval(($this->editQuantity * $food->kcal) / $food->quantity);
+    }
+
+    public function AddFoodToList($id)
+    {
+
+        $this->authorize('create', 'App\Models\user_list');
+
+        $food = food::findOrfail($id);
+        $addToList = user_list::create([
+            'user_id' => auth()->user()->id,
+            'food_id' => $id,
+            'kcal' => $food->kcal,
+        ]);
+
+        if ($addToList) {
+            $this->dispatch('calcul-kcal-day')->component('navbar');
+            $this->SweatAlert('Item Add to the list', 'success');
+        }
     }
     public function EditFavoriteAndAddToList()
     {
@@ -59,10 +79,21 @@ class Favorite extends Component
         }
     }
 
+
     public function RemoveFoodFromFav($id)
     {
         $DeleteFood = ModelsFavorite::where('food_id', $id)->where('user_id', auth()->user()->id)->delete();
         $DeleteFood ? $this->SweatAlert('food removed', 'info') : '';
+        $this->getFavorites();
+    }
+    public function RemoveAllFav(array $list)
+    {
+
+        $this->dispatch('Favs-removed');
+        $DeleteFood = ModelsFavorite::where('user_id', auth()->user()->id)->whereIn('id', $list)->delete();
+        $DeleteFood ? $this->dispatch('Favs-removed') : '';
+        $DeleteFood ? $this->SweatAlert('favorites removed', 'info') : '';
+
         $this->getFavorites();
     }
 

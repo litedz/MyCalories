@@ -5,20 +5,23 @@ namespace App\Livewire;
 use App\Charts\SimpleChar;
 use App\Models\user_list;
 use Carbon\Carbon;
-use Carbon\CarbonTimeZone;
 use Livewire\Component;
 
 class StaticUser extends Component
 {
     public array $days = [''];
+
     public array $months = [''];
+
     public $dataBymonths;
+
     public $dataBydays;
+
     public array $kcals = [''];
 
-    public  function mount()
+    public function mount()
     {
-        $this->authorize('view','App\Models\User');
+        $this->authorize('view', 'App\Models\User');
         $this->dataBydays = collect(user_list::with('food')
             ->where('user_id', auth()->user()->id)
             ->whereMonth('created_at', Carbon::now()->month)
@@ -33,7 +36,6 @@ class StaticUser extends Component
             ->groupBy(function ($val) {
                 return Carbon::parse($val->created_at)->format('m');
             })->sortByDesc('created_at');
-
 
         // Calcul Total kcal  per  month
 
@@ -55,6 +57,7 @@ class StaticUser extends Component
             $this->dataBydays[$key]['TotalKcal'] = $totalKcal;
         }
     }
+
     public function render()
     {
 
@@ -64,7 +67,7 @@ class StaticUser extends Component
         }
         foreach ($this->dataBydays as $key => $value) {
             array_push($this->days, date_create($value->first()->created_at)->format('d l'));
-           
+
             array_push($this->kcals, $value['TotalKcal']);
         }
         rsort($this->months);
@@ -74,17 +77,17 @@ class StaticUser extends Component
         $chart->height(500);
         $chart->labels($this->days);
         $chart->dataset('Calories days', 'line', $this->kcals)->color('blue');
-        $chart->title('Calories daily',22,"#1f2937","bold");
-        
+        $chart->title('Calories daily', 22, '#1f2937', 'bold');
+
         // chart monthly
         $chart2 = new SimpleChar;
-        $chart2->options(['color' => '#ff0000','backgroundColor' => '#ff0000']);
+        $chart2->options(['color' => '#ff0000', 'backgroundColor' => '#ff0000']);
         $chart2->dataset('', 'line', $this->kcals)->color('green');
         $chart2->width(500);
         $chart2->height(500);
-        $chart2->title('Calories Months',22,"#1f2937","bold");
+        $chart2->title('Calories Months', 22, '#1f2937', 'bold');
         $chart2->labels($this->months);
-       
+
         return view('livewire.static-user', [
             'chart' => $chart,
             'chart2' => $chart2,

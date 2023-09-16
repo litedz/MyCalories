@@ -20,10 +20,11 @@ class NavbarTest extends TestCase
         Livewire::test(Navbar::class)
             ->assertHasNoErrors();
     }
+
     public function test_Updating_Kcal_when_add_food_to_user_list()
     {
         Livewire::test(Navbar::class)
-        ->dispatch('calcul-kcal-day')
-        ->assertSee('Kcal/day');
+            ->dispatch('calcul-kcal-day')
+            ->assertSee('Kcal/day');
     }
 }

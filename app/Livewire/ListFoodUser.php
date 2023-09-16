@@ -29,6 +29,7 @@ class ListFoodUser extends Component
     public $list_id;
 
     public $editKcal;
+
     public $loadmore = true;
 
     public int $loadeMoreNum = 1;
@@ -45,6 +46,7 @@ class ListFoodUser extends Component
     public function UpdateList()
     {
     }
+
     public function updatedLoadeMoreNum()
     {
         $this->getLists();
@@ -84,14 +86,12 @@ class ListFoodUser extends Component
         }
     }
 
-
     public function getLists()
     {
-    
+
         $this->lists = collect(user_list::with('food')->where('user_id', auth()->user()->id)->limit($this->loadeMoreNum)->get())->groupBy(function ($val) {
             return Carbon::parse($val->created_at)->format('m d');
         })->sortBy('created_at')->values();
-
 
         if ($this->lists->count() < $this->loadeMoreNum) {
             $this->loadmore = false;
@@ -107,7 +107,6 @@ class ListFoodUser extends Component
             $this->lists[$key]['TotalKcal'] = $totalKcal;
         }
     }
-
 
     public function render()
     {

@@ -91,14 +91,13 @@ class FormCalcul extends Component
     public function SaveProfile()
     {
 
-        
-        if (Gate::denies('create','App\\Models\User')) {
-          $this->SweatAlert('You most login to save profile','warning');
-          return false;
-        }
-       
-        // $this->authorize('create', User::class);
+        if (Gate::denies('create', 'App\\Models\User')) {
+            $this->SweatAlert('You most login to save profile', 'warning');
 
+            return false;
+        }
+
+        // $this->authorize('create', User::class);
 
         $validData = $this->validate();
         $val = Validator::make(
