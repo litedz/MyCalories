@@ -16,7 +16,7 @@ class UserAdvice extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public $name, public $subjectMail)
+    public function __construct(public $name, public $subjectMail,public $message)
     {
         //
     }

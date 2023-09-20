@@ -25,7 +25,7 @@ class ContacListener
     public function handle(ContactUserEvent $event): void
     {
 
-        $mailToUser = Mail::to('maamarxx@mail.com')->send(new UserAdvice($event->name,$event->subject));
+        $mailToUser = Mail::to('maamarxx@mail.com')->send(new UserAdvice($event->name,$event->subject,$event->message));
 
         if ($mailToUser) {
             Notification::make()
