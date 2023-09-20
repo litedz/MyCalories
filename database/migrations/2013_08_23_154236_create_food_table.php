@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('code');
-            $table->foreignId('categorie_food_id')->constrained();
+            $table->foreignId('categorie_food_id')->constrained()->cascadeOnDelete();
             $table->float('protien');
             $table->float('carbohydrate');
             $table->integer('kcal');

@@ -18,7 +18,7 @@ class CategorieFoodFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'path_image' => fake()->filePath(),
+            'image' => fake()->filePath(),
         ];
     }
 }

@@ -17,7 +17,7 @@ class CategorieFoodSeeder extends Seeder
         foreach ($foods as $key => $value) {
             $create_food = categorie_food::create([
                 'name' => $value,
-                'path_image' => fake()->filePath(),
+                'image' => fake()->filePath(),
             ]);
         }
     }

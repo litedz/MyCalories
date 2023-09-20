@@ -51,6 +51,11 @@ class MycalPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+            ])
+            ->navigationGroups([
+                'Shop',
+                'Blog',
+                'Settings',
             ]);
     }
 }

@@ -6,10 +6,8 @@ use App\Models\profile;
 use App\Models\user_list;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
-use Livewire\Attributes\Lazy;
 use Livewire\Attributes\On;
 use Livewire\Component;
-
 
 class Navbar extends Component
 {

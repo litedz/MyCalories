@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class categorie_food extends Model
 {
     use HasFactory;
+
+    protected $guarded;
 }

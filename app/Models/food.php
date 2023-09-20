@@ -10,6 +10,8 @@ class food extends Model
 {
     use HasFactory;
 
+    protected $guarded;
+
     protected $with = ['cat'];
 
     public function cat(): BelongsTo

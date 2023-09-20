@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(profile::class, 'profile_id', 'id');
     }
+
+    public function scopeIsAdmin(): bool
+    {
+        return auth()->user()->is_admin == 1;
+    }
 }

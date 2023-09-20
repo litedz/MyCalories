@@ -8,6 +8,7 @@ use App\Models\user_list;
 use App\Traits\SweatAlert;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -79,7 +80,11 @@ class Foods extends Component
     public function AddFoodToList($id)
     {
 
-        $this->authorize('create', 'App\\Models\user_list');
+        if (Gate::denies('create', 'App\\Models\user_list')) {
+            $this->SweatAlert('Your must login to access to this action', 'warning');
+
+            return false;
+        }
 
         $food = food::findOrfail($id);
         $addToList = user_list::create([

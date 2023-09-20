@@ -27,21 +27,22 @@
     </div>
     {{-- navbar --}}
     <div>
-    <livewire:navbar />
+        <livewire:navbar />
 
-</div>
-    <div class="dark:bg-gray-800 py-4" >
-        
+    </div>
+    <div class="dark:bg-gray-800 py-4">
+
         {{ $slot }}
     </div>
-    
+
     @livewireScripts
 
-    <script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script type="text/javascript">
         document.addEventListener('alpine:init', () => {
             Alpine.data('compo', () => ({
                 darkMode: false,
-                loadingPage:false;
+                loadingPage: false,
                 toggleMode() {
                     this.darkMode = !this.darkMode;
                 },
@@ -58,12 +59,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
-
-
-
-
 </body>
 
 </html>

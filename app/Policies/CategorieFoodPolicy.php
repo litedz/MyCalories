@@ -12,7 +12,7 @@ class CategorieFoodPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -28,7 +28,7 @@ class CategorieFoodPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return auth()->user()->IsAdmin();
     }
 
     /**
@@ -44,7 +44,7 @@ class CategorieFoodPolicy
      */
     public function delete(User $user, categorie_food $categorieFood): bool
     {
-        //
+        return auth()->user()->IsAdmin();
     }
 
     /**

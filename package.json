@@ -20,6 +20,6 @@
     "dependencies": {
         "alpinejs": "^3.13.0",
         "alpinejs-form-validation": "^1.0.2",
-        "sweetalert2": "^11.7.27"
+        "sweetalert2": "^11.6.13"
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use Livewire\Attributes\Lazy;
 use Livewire\Component;
 
 class Welcome extends Component

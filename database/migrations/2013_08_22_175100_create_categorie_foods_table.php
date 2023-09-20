@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('categorie_foods', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('path_image');
+            $table->string('image');
             $table->timestamps();
         });
     }
