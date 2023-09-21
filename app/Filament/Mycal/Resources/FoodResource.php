@@ -24,16 +24,10 @@ class FoodResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')->required(),
-                TextInput::make('current_cat')->label('current categorie')->readOnly(),
                 TextInput::make('code')->nullable(),
                 TextInput::make('protien')->required(),
-                Select::make('categories')
-                    ->label('categories')
-                    ->options(
-                        fn () => categorie_food::all()->pluck('name', 'id')
-                    )->selectablePlaceholder(true)
-                    ->required()->string(),
-
+                Select::make('cat')->label('categories')
+                    ->relationship('cat', titleAttribute: 'name')->required(),
                 TextInput::make('carbohydrate')->required(),
                 TextInput::make('kcal')->required(),
                 TextInput::make('quantity')->required(),
@@ -50,7 +44,7 @@ class FoodResource extends Resource
                 TextColumn::make('carbohydrate'),
                 TextColumn::make('kcal'),
                 TextColumn::make('quantity'),
-                TextColumn::make('cat.name')->badge()->color('info'),
+                TextColumn::make('cat.name')->label('categorie')->badge()->color('info'),
             ])
             ->filters([
                 //

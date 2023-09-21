@@ -16,19 +16,12 @@ class EditFood extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
-    protected function mutateFormDataBeforeFill(array $data): array
-    {
-        $data['current_cat'] = $this->getRecord()->cat->name;
-        return $data;
-    }
-
     protected function mutateFormDataBeforeSave(array $data): array
     {
 
-        $data = array_merge($data, ['categorie_food_id' => $data['categories']]);
-        $data = array_diff_key($data, ['current_cat' => $data['current_cat'], 'categories' => $data['categories']]);
-        $this->refreshFormData(['current_cat']);
 
+        $data = array_merge($data, ['categorie_food_id' => $data['cat']]);
+        $data = array_diff_key($data, ['cat' => $data['cat']]);
         return $data;
     }
 }
