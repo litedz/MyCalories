@@ -3,9 +3,7 @@
 namespace App\Jobs;
 
 use App\Mail\UserAdvice;
-use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -33,12 +31,12 @@ class ProcessContactUsers implements ShouldQueue
     }
 
     /**
-* Calculate the number of seconds to wait before retrying the job.
-*
-* @return array<int, int>
-*/
-public function backoff(): array
-{
-    return [1, 5, 10];
-}
+     * Calculate the number of seconds to wait before retrying the job.
+     *
+     * @return array<int, int>
+     */
+    public function backoff(): array
+    {
+        return [1, 5, 10];
+    }
 }

@@ -30,7 +30,7 @@ class FoodResource extends Resource
                 Select::make('categories')
                     ->label('categories')
                     ->options(
-                        fn () => categorie_food::all()->pluck('name','id')
+                        fn () => categorie_food::all()->pluck('name', 'id')
                     )->selectablePlaceholder(true)
                     ->required()->string(),
 

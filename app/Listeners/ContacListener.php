@@ -5,8 +5,6 @@ namespace App\Listeners;
 use App\Events\ContactUserEvent;
 use App\Mail\UserAdvice;
 use Filament\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 
 class ContacListener
@@ -25,11 +23,11 @@ class ContacListener
     public function handle(ContactUserEvent $event): void
     {
 
-        $mailToUser = Mail::to('maamarxx@mail.com')->send(new UserAdvice($event->name,$event->subject,$event->message));
+        $mailToUser = Mail::to('maamarxx@mail.com')->send(new UserAdvice($event->name, $event->subject, $event->message));
 
         if ($mailToUser) {
             Notification::make()
-                ->title('Mailed Success to : <br>' . $event->email)
+                ->title('Mailed Success to : <br>'.$event->email)
                 ->success()
                 ->send();
         }

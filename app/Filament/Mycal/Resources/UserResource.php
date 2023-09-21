@@ -67,7 +67,7 @@ class UserResource extends Resource
                 Tables\Actions\EditAction::make(),
                 ViewAction::make()
                     ->mutateRecordDataUsing(function (array $data): array {
-                        $profile =profile::where('id', $data['profile_id'])->first();
+                        $profile = profile::where('id', $data['profile_id'])->first();
                         $data['result'] = $profile->result;
                         $data['age'] = $profile->age;
                         $data['sex'] = $profile->sex;
@@ -113,6 +113,7 @@ class UserResource extends Resource
                     ),
             ]);
     }
+
     public static function getPages(): array
     {
         return [
