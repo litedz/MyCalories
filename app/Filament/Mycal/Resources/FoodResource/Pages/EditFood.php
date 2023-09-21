@@ -12,8 +12,6 @@ class EditFood extends EditRecord
 
     protected function getHeaderActions(): array
     {
-        $this->data['current_cat'] = $this->getRecord()->cat->name;
-
         return [
             Actions\DeleteAction::make(),
         ];
