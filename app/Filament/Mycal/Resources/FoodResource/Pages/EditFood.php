@@ -10,10 +10,6 @@ class EditFood extends EditRecord
 {
     protected static string $resource = FoodResource::class;
 
-    public function __construct()
-    {
-    }
-
     protected function getHeaderActions(): array
     {
         $this->data['current_cat'] = $this->getRecord()->cat->name;
@@ -21,6 +17,11 @@ class EditFood extends EditRecord
         return [
             Actions\DeleteAction::make(),
         ];
+    }
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        $data['current_cat'] = $this->getRecord()->cat->name;
+        return $data;
     }
 
     protected function mutateFormDataBeforeSave(array $data): array
