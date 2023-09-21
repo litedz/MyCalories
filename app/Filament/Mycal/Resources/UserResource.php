@@ -66,7 +66,7 @@ class UserResource extends Resource
                     ->link(),
                 Tables\Actions\EditAction::make(),
                 ViewAction::make()
-                    ->mutateRecordDataUsing(function (array $data, Builder $builder): array {
+                    ->mutateRecordDataUsing(function (array $data): array {
                         $profile =profile::where('id', $data['profile_id'])->first();
                         $data['result'] = $profile->result;
                         $data['age'] = $profile->age;
