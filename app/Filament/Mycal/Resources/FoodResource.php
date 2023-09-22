@@ -3,7 +3,6 @@
 namespace App\Filament\Mycal\Resources;
 
 use App\Filament\Mycal\Resources\FoodResource\Pages;
-use App\Models\categorie_food;
 use App\Models\Food;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -21,7 +20,7 @@ class FoodResource extends Resource
 
     public static function form(Form $form): Form
     {
-       
+
         return $form
             ->schema([
                 TextInput::make('name')->required(),
