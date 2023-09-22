@@ -18,8 +18,6 @@ class EditFood extends EditRecord
     }
     protected function mutateFormDataBeforeSave(array $data): array
     {
-
-
         $data = array_merge($data, ['categorie_food_id' => $data['cat']]);
         $data = array_diff_key($data, ['cat' => $data['cat']]);
         return $data;

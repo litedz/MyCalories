@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\Column;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -60,6 +61,7 @@ class UserResource extends Resource
                         MarkdownEditor::make('message'),
 
                     ])
+                    
                     ->action(function (array $data) {
                         ContactUserEvent::dispatch($data['email'], $data['name'], $data['subject']);
                     })
@@ -81,9 +83,9 @@ class UserResource extends Resource
                         return $data;
                     })
                     ->form([
-                        TextInput::make('name'),
-                        TextInput::make('age'),
-                        TextInput::make('sex'),
+                        TextInput::make('name')->columnSpan(2),
+                        TextInput::make('age')->columnSpan(2),
+                        TextInput::make('sex')->columnSpan(2),
                         TextInput::make('weight'),
                         TextInput::make('unitWeight'),
                         TextInput::make('height'),

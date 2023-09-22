@@ -21,16 +21,21 @@ class FoodResource extends Resource
 
     public static function form(Form $form): Form
     {
+       
         return $form
             ->schema([
                 TextInput::make('name')->required(),
-                TextInput::make('code')->nullable(),
-                TextInput::make('protien')->required(),
+                TextInput::make('code')->nullable()->numeric(true),
+                TextInput::make('protien')->required()->numeric(true),
                 Select::make('cat')->label('categories')
                     ->relationship('cat', titleAttribute: 'name')->required(),
-                TextInput::make('carbohydrate')->required(),
-                TextInput::make('kcal')->required(),
-                TextInput::make('quantity')->required(),
+                TextInput::make('carbohydrate')->required()->numeric(true),
+                Select::make('unit')->options([
+                    'Kg' => 'kg',
+                    'Pound' => 'pound',
+                ])->required(),
+                TextInput::make('kcal')->required()->numeric(true),
+                TextInput::make('quantity')->required()->numeric(true),
             ]);
     }
 

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('food', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('code');
+            $table->string('code')->nullable();
             $table->foreignId('categorie_food_id')->constrained()->cascadeOnDelete();
             $table->float('protien');
             $table->float('carbohydrate');
