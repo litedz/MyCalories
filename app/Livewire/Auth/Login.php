@@ -31,6 +31,7 @@ class Login extends Component
 
     public function login(Request $request)
     {
+        
         $this->validate();
         try {
             $this->authenticate($request);

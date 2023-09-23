@@ -14,6 +14,7 @@ use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\File;
 
 class CategorieFoodResource extends Resource
 {
@@ -42,19 +43,6 @@ class CategorieFoodResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                ViewAction::make()
-                    ->form([
-                        TextInput::make('name'),
-                        TextInput::make('profile'),
-                    ]),
-
-            ])
-            ->headerActions([
-                Tables\Actions\CreateAction::make('test')
-                    ->color('info')
-                    ->model(User::class)
-                    ->button()
-                    ->successNotificationTitle('User registered'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
