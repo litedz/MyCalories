@@ -3,7 +3,7 @@
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <form class="grid gap-2" x-data="{ showRole: false, btnDashsboard: '' }">
+        <form class="grid gap-2" x-data="{ showRole: false, btnDashsboard: '' }" >
             @csrf
 
             <!-- Email Address -->
@@ -52,7 +52,7 @@
                     </a>
                 @endif
 
-                <div>
+                <div x-cloak wire:key='{{rand()}}'>
                     <button class="btn-primary " wire:click='login' type="button" x-show="!$wire.isAdmin"
                         wire:key='{{ rand() }}'>
                         {{ __('Log in') }}

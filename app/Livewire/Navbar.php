@@ -5,6 +5,8 @@ namespace App\Livewire;
 use App\Models\profile;
 use App\Models\user_list;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -50,6 +52,16 @@ class Navbar extends Component
                 };
             }
         }
+    }
+    public function destroy(Request $request)
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('welcome');
     }
 
     public function render()

@@ -23,9 +23,9 @@
                     </button>
                 </div>
                 <div class="flex flex-1 items-center justify-start sm:items-stretch sm:justify-around gap-5">
-                    <div class="login" x-cloak x-show='!{{ auth()->check() }}' >
-                        <a href="{{ route('login') }}" class="btn-primary" type="button" >Login</a>
-                        <a href="{{ route('register') }}" class="btn-primary" type="button" >Sign
+                    <div class="login" x-cloak x-show='!{{ auth()->check() }}'>
+                        <a href="{{ route('login') }}" class="btn-primary" type="button">Login</a>
+                        <a href="{{ route('register') }}" class="btn-primary" type="button">Sign
                             up</a>
                     </div>
 
@@ -33,7 +33,7 @@
                         <img class="h-8 w-auto rounded-full" src="{{ asset('images/logo.png') }}" alt="Your Company">
                     </div>
                     <div class="md:ml-6 md:block sm:hidden">
-                        <div class="flex space-x-4" >
+                        <div class="flex space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                             <a href="{{ route('welcome') }}" wire:navigate
                                 class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
@@ -44,13 +44,12 @@
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Foods</a>
                             <a href="{{ route('favorite') }}" wire:navigate
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Favorite</a>
-                                <a href="{{route('staticUser')}}" 
-                                x-show='authUser'
+                            <a href="{{ route('staticUser') }}" x-show='authUser'
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Static</a>
 
-                                
+
                             <a href="#" wire:key='{{ rand() }}' x-bind:class="$wire.bg_limite"
-                            x-show="authUser"
+                                x-show="authUser"
                                 class="hover:bg-gray-700  text-white hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                                 {{ $kcalDay }} <span class="capitalize">Kcal/day</span>
                             </a>
@@ -106,10 +105,23 @@
                             <a wire:navigate href="{{ route('user.listFood') }}"
                                 class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                                 id="user-menu-item-0"><span class="fa fa-list text-xs"></span> Your List</a>
+
+                            {{-- link Dashborad for admin  --}}
+                            @auth
+                                @if (auth()->user()->IsAdmin())
+                                    <a href="{{ route('filament.mycal.pages.dashboard') }}"
+                                        class="block px-4 py-2 text-sm text-gray-700  bg-slate-200 " role="menuitem"
+                                        tabindex="-1" id="user-menu-item-0"><span
+                                            class="fa fa-dashboard text-xs"></span> Dashboard</a>
+                                @endif
+                            @endauth
+
+
+
                             <a href="{{ route('profile.edit') }}" wire:navigate
                                 class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                                 id="user-menu-item-1">Settings</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                            <a href="#" wire:click='destroy' class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
                                 tabindex="-1" id="user-menu-item-2">Sign out</a>
                         </div>
                     </div>
