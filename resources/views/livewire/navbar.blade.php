@@ -5,9 +5,9 @@
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 {{-- logo --}}
                 <a href="https://flowbite.com/" class="flex items-center">
-                    <img src="{{ asset('images/logo.png') }}" class="h-8 mr-3" alt="Flowbite Logo" />
+                    <img src="{{ asset('images/logo.png') }}" class="h-20 mr-3 dark:rounded-full" alt="Flowbite Logo" />
                     <span
-                        class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white capitalize">Mycal</span>
+                        class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white capitalize sm:hidden">Mycal</span>
                 </a>
                 {{-- profile user --}}
                 <div class="flex items-center md:order-2 gap-2">

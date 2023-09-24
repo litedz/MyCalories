@@ -114,7 +114,7 @@
                                 {{ $fav->food->unit }}
                             </td>
                             {{-- actions --}}
-                            <td class="px-6 py-4 gap-5 flex flex-col sm:flex-row justify-center">
+                            <td class="px-6 py-4 gap-5 flex flex-row justify-center">
                                 <button type="button"
                                     class="font-medium bg-red-600 hover:bg-red-700 dark:bg-slate-600 dark:hover:bg-slate-400 text-white p-2 rounded dark:text-blue-500"
                                     wire:click='RemoveFoodFromFav({{ $fav->food->id }})'>Remove</button>
@@ -122,9 +122,9 @@
                                     class="font-medium w-14 sm:w-auto bg-slate-600 hover:bg-slate-700 dark:bg-slate-600 dark:hover:bg-slate-400 text-white p-2 rounded dark:text-blue-500"
                                     @click="showFormEdit = true;$wire.set('editName','{{ $fav->food->name }}');$wire.set('editFood_id','{{ $fav->food->id }}')">Edit</button>
                                 <button type="button"
-                                    class="font-medium rounded-full px-3 w-14 sm:w-auto bg-sky-600 hover:bg-sky-700 dark:bg-slate-600 dark:hover:bg-slate-400 text-white p-2 dark:text-blue-500 "
+                                    class="font-medium rounded-full px-1 w-14  "
                                     wire:click="AddFoodToList({{ $fav->food->id }})">
-                                    <span class="fa fa-plus"></span></button>
+                                    <span class="fa fa-plus bg-sky-600 hover:bg-sky-700 dark:bg-slate-600 dark:hover:bg-slate-400 text-white py-4 dark:text-blue-500  px-4 rounded-full"></span></button>
                             </td>
                         </tr>
                     @endforeach
