@@ -38,13 +38,8 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('alpine:init', () => {
-  
             Alpine.data('compo', () => ({
-                darkMode: false,
                 loadingPage: false,
-                toggleMode() {
-                    this.darkMode = !this.darkMode;
-                },
             }))
         });
         window.addEventListener('testwal', function(e) {
