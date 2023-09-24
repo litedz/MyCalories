@@ -48,14 +48,9 @@
         });
         //  Button Enable dark Mode 
         window.addEventListener('dark-mode', function(e) {
-                let body = document.body;
-                if (document.body.className.includes('dark')) {
-                    body.classList.remove('dark');
-                }
-                else{
-                    body.classList.add('dark');
-                }
-            });
+            let body = document.body;
+            body.className.includes('dark') ? body.classList.remove('dark') : body.classList.add('dark');
+        });
     </script>
     @livewireScripts
 </body>
