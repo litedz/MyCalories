@@ -18,28 +18,27 @@
     @livewireStyles
 </head>
 
-<body x-data="compo" :class="darkMode && 'dark'" id="$id('text-input')">
-    {{-- Button Enable dark Mode --}}
-    <div class="mode flex flex-row gap-5 text-white bg-indigo-400 rounded-2xl p-4 w-auto fixed top-2 right-0">
-        <button type="button">
-            <span class="fa fa-moon bg-slate-400 fa  p-2 rounded-full" @click="toggleMode"></span>
-        </button>
-    </div>
-    {{-- navbar --}}
-    <div>
-        <livewire:navbar />
-
-    </div>
-    <div class="dark:bg-gray-800 py-4">
-
-        {{ $slot }}
+<body>
+    <div x-data="compo" :class="darkMode && 'dark'">
+        {{-- navbar --}}
+        <div>
+            <livewire:navbar class="dark:bg-gray-800 py-4" />
+        </div>
+        {{-- Core App  --}}
+        <div class="dark:bg-gray-800 py-4">
+            {{ $slot }}
+        </div>
     </div>
 
-    @livewireScripts
 
-    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script type="text/javascript">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
         document.addEventListener('alpine:init', () => {
+  
             Alpine.data('compo', () => ({
                 darkMode: false,
                 loadingPage: false,
@@ -52,13 +51,18 @@
             let data = e.detail[0];
             Swal.fire(data.title, 'Click to hide window', data.icon)
         });
+        //  Button Enable dark Mode 
+        window.addEventListener('dark-mode', function(e) {
+                let body = document.body;
+                if (document.body.className.includes('dark')) {
+                    body.classList.remove('dark');
+                }
+                else{
+                    body.classList.add('dark');
+                }
+            });
     </script>
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
-
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @livewireScripts
 </body>
 
 </html>

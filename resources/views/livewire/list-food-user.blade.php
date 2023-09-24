@@ -33,6 +33,12 @@
         </div>
         <div class="w-4/5 mx-auto sm:w-full sm:p-2">
             <div class="flex flex-col items gap-5 p-4 sm:p-2">
+                @if (count($lists) ==0)
+                    
+                <div class="p-2 border-2 border-slate-200 rounded-lg">
+                    <h1 class="text-2xl text-center text-slate-400 p-6">your dont have any food</h1>
+                </div>
+                @endif
                 @foreach ($lists as $list)
                     <div
                         class="date mb-4 border-b-2 font-semibold py-4 text-center bg-gradient-to-t from-emerald-400 to-emerald-600/80 text-gray-800 text-base tracking-wide w-full rounded-full">

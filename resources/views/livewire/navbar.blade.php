@@ -1,147 +1,100 @@
-<div x-data="{ open: false, openMenuMobile: false, OpenProfile: true, OpenSubMenuProfile: false, authUser: {{ auth()->check() }} }">
-    <nav class="bg-gray-800 mb-4">
-        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div class="relative flex h-16 items-center justify-between">
-                <div class="absolute inset-y-0 left-0 flex items-center ">
-                    <!-- Mobile menu button-->
+<div>
+    <div x-data="{ open: false, openMenuMobile: false, OpenProfile: true, OpenSubMenuProfile: false, authUser: {{ auth()->check() }} }" x-cloak>
+        <nav class="bg-white border-gray-200 dark:bg-gray-900 dark:text-white">
 
-                    <button type="button" @click="openMenuMobile = !openMenuMobile"
-                        class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white md:hidden lg:hidden"
-                        aria-controls="mobile-menu" aria-expanded="false">
-                        <span class="absolute -inset-0.5"></span>
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                {{-- logo --}}
+                <a href="https://flowbite.com/" class="flex items-center">
+                    <img src="{{ asset('images/logo.png') }}" class="h-8 mr-3" alt="Flowbite Logo" />
+                    <span
+                        class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white capitalize">Mycal</span>
+                </a>
+                {{-- profile user --}}
+                <div class="flex items-center md:order-2 gap-2">
+                    {{-- Enable dark mode button  --}}
+               
+                    <div x-show="authUser">
+                        <button type="button"
+                            class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                            id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
+                            data-dropdown-placement="bottom">
+                            <span class="sr-only">Open user menu</span>
+                            <img class="w-8 h-8 rounded-full" src="https://i.pravatar.cc/150?img=67" alt="user photo">
+                        </button>
+                        <!-- Dropdown menu -->
+                        <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+                            id="user-dropdown">
+                            <div class="px-4 py-3">
+                                <span class="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
+                                <span
+                                    class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+                            </div>
+                            {{-- submenu profile --}}
+                            <ul class="py-2" aria-labelledby="user-menu-button">
+                                <li>
+                                    @can('adminView', App\Models\User::class)
+                                        <a x-show="{{ auth()->user()->IsAdmin() }}" href="#"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+                                    @endcan
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
+                                        out</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button type="button" @click="$dispatch('dark-mode')">
+                        <span class="fa fa-moon px-3 py-2 rounded-lg bg-slate-100 border-2  border-slate-300 dark:text-slate-700"></span>
+                    </button>
+                    <button data-collapse-toggle="navbar-user" type="button"
+                        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        aria-controls="navbar-user" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
-
-                        <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                        </svg>
-                        <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 17 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 1h15M1 7h15M1 13h15" />
                         </svg>
                     </button>
                 </div>
-                <div class="flex flex-1 items-center justify-start sm:items-stretch sm:justify-around gap-5">
-                    <div class="login" x-cloak x-show='!{{ auth()->check() }}'>
-                        <a href="{{ route('login') }}" class="btn-primary" type="button">Login</a>
-                        <a href="{{ route('register') }}" class="btn-primary" type="button">Sign
-                            up</a>
-                    </div>
-
-                    <div class="flex flex-shrink-0 items-center">
-                        <img class="h-8 w-auto rounded-full" src="{{ asset('images/logo.png') }}" alt="Your Company">
-                    </div>
-                    <div class="md:ml-6 md:block sm:hidden">
-                        <div class="flex space-x-4">
-                            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <a href="{{ route('welcome') }}" wire:navigate
-                                class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
+                    <ul
+                        class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <li>
+                            <a href="#"
+                                class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                                 aria-current="page">Home</a>
-                            <a href="{{ route('calcul.bmi') }}" wire:navigate.hover
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">BMI</a>
-                            <a href="{{ route('categories') }}" wire:navigate
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Foods</a>
-                            <a href="{{ route('favorite') }}" wire:navigate
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Favorite</a>
-                            <a href="{{ route('staticUser') }}" x-show='authUser'
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Static</a>
-
-
-                            <a href="#" wire:key='{{ rand() }}' x-bind:class="$wire.bg_limite"
-                                x-show="authUser"
-                                class="hover:bg-gray-700  text-white hover:text-white rounded-md px-3 py-2 text-sm font-medium">
-                                {{ $kcalDay }} <span class="capitalize">Kcal/day</span>
-                            </a>
-
-
-
-
-                        </div>
-                    </div>
+                        </li>
+                        <li>
+                            <a href="/bmi" wire:navigate
+                                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">BMI</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pricing</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                        </li>
+                    </ul>
                 </div>
-                <div x-show="authUser" x-cloak wire:key='{{ rand() }}'
-                    class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                    <button type="button"
-                        class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                        <span class="absolute -inset-1.5"></span>
-                        <span class="sr-only">View notifications</span>
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-                        </svg>
-                    </button>
 
-                    <!-- Profile dropdown -->
-                    <div class="relative ml-3" @click="OpenSubMenuProfile = !OpenSubMenuProfile">
-                        <div>
-                            <button type="button"
-                                class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                                id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                                <span class="absolute -inset-1.5"></span>
-                                <span class="sr-only">Open user menu</span>
-                                <img class="h-8 w-8 rounded-full"
-                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                    alt="">
-                            </button>
-                        </div>
-
-                        <!--
-                  Dropdown menu, show/hide based on menu state.
-      
-                  Entering: "transition ease-out duration-100"
-                    From: "transform opacity-0 scale-95"
-                    To: "transform opacity-100 scale-100"
-                  Leaving: "transition ease-in duration-75"
-                    From: "transform opacity-100 scale-100"
-                    To: "transform opacity-0 scale-95"
-                -->
-                        <div x-show="OpenSubMenuProfile"x-cloak
-                            class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                            role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
-                            tabindex="-1">
-                            <!-- Active: "bg-gray-100", Not Active: "" -->
-                            <a wire:navigate href="{{ route('user.listFood') }}"
-                                class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                id="user-menu-item-0"><span class="fa fa-list text-xs"></span> Your List</a>
-
-                            {{-- link Dashborad for admin  --}}
-                            @auth
-                                @if (auth()->user()->IsAdmin())
-                                    <a href="{{ route('filament.mycal.pages.dashboard') }}"
-                                        class="block px-4 py-2 text-sm text-gray-700  bg-slate-200 " role="menuitem"
-                                        tabindex="-1" id="user-menu-item-0"><span
-                                            class="fa fa-dashboard text-xs"></span> Dashboard</a>
-                                @endif
-                            @endauth
-
-
-
-                            <a href="{{ route('profile.edit') }}" wire:navigate
-                                class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                id="user-menu-item-1">Settings</a>
-                            <a href="#" wire:click='destroy' class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                tabindex="-1" id="user-menu-item-2">Sign out</a>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>
-
-        <!-- Mobile menu, show/hide based on menu state. -->
-        <div class="transition-all duration-300" id="mobile-menu" x-show="openMenuMobile" x-transition x-cloak>
-            <div class="space-y-1 px-2 pb-3 pt-2">
-                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                <a href="#" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
-                    aria-current="page">Dashboard</a>
-                <a href="#"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Team</a>
-                <a href="#"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</a>
-                <a href="#"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
-            </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
 </div>
