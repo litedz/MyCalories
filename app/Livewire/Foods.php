@@ -103,9 +103,9 @@ class Foods extends Component
     {
 
         $checkFood = favorite::where('food_id', $id)->where('user_id', auth()->user()->id)->first();
-        if (! is_null($checkFood)) {
-            $this->SweatAlert('this food exist in the favorite list', 'warning');
 
+        if (!is_null($checkFood)) {
+            $this->SweatAlert('this food exist in the favorite list', 'warning');
             return false;
         }
         $addToFav = favorite::create([

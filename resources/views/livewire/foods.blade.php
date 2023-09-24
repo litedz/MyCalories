@@ -1,6 +1,6 @@
 <div>
     <div class="flex flex-col p-4" x-data="{showFormEdit:false}">
-        
+      
         <div class="w-full h-full fixed top-0 left-0 edit-form" x-cloak x-show="showFormEdit" x-transition>
             <div class="overlay w-full h-full absolute bg-slate-600 opacity-50 z-10"></div>
             <div class="w-2/5 mx-auto relative z-20 top-1/4">
@@ -68,7 +68,7 @@
                                     <td class="whitespace-nowrap px-6 py-4">{{$food->unit}}</td>
                                     <td class="whitespace-nowrap px-6 py-4">{{$food->kcal}}</td>
                                     <td class="whitespace-nowrap px-6 py-4">
-                                        <div>
+                                        <div wire:key='{{rand()}}'>
                                             <button type="button" wire:click="AddFoodToList({{$food->id}})"
                                                 class="text-white focus:border-[1px] bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><span
                                                     class="fa fa-plus"></span></button>
@@ -78,11 +78,9 @@
                                                 <span class="fa fa-edit"></span>
                                             </button>
                                             <button type="button"
-                                            wire:key='{{rand()}}'
-                                                @click="$wire.AddToFavorite({{$food->id}})" class="">
+                                            wire:click='AddToFavorite({{$food->id}})'>
                                                 <span class="fa fa-regular fa-star text-2xl text-yellow-300"
-                                                x-cloak
-                                                    :class="{{$IsLiked}} && 'fa-solid'"></span>
+                                                x-cloak :class="{{$IsLiked}} && 'fa-solid'"></span>
 
                                             </button>
 
