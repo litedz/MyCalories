@@ -3,6 +3,8 @@ import forms from '@tailwindcss/forms';
 const colors = require('tailwindcss/colors')
 import flowbite from "flowbite/plugin"
 /** @type {import('tailwindcss').Config} */
+
+// 0b9b8a,f596a1,fadeeb,c4e1f6,f9c975
 export default {
     darkMode: "class",
     content: [
@@ -25,8 +27,12 @@ export default {
         extend: {
             screens:{
                 'sm': {'max': '767px'},
-            }
+            },
         },
+        colors:{
+            'primary' :'#7CC51F',
+            'second' :'#556F7B',
+        }
     },
     plugins: [forms, require('flowbite/plugin')],
 };

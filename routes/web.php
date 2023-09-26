@@ -26,7 +26,7 @@ Route::get('/', Welcome::class)->name('welcome');
 Route::get('/bmi', FormCalcul::class)->name('calcul.bmi');
 Route::get('categories', Categories::class)->name('categories');
 Route::get('food/{id}', Foods::class)->where(['id' => '[0-9]+'])->name('food');
-
+Route::get('articles')->name('articles');
 Route::middleware('auth')->group(function () {
 });
 

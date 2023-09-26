@@ -25,7 +25,7 @@
             <livewire:navbar class="dark:bg-gray-800 py-4" />
         </div>
         {{-- Core App  --}}
-        <div class="dark:bg-gray-800 py-4">
+        <div class="dark:bg-gray-800">
             {{ $slot }}
         </div>
     </div>
