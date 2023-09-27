@@ -224,47 +224,110 @@
                 </div>
             </div>
         </section>
-        <section class="follow-us h-[400px] overflow-hidden">
+        <section class="Sign-Up h-[400px] overflow-hidden">
             <div class="bg-primary py-5">
-                <div class="grid grid-cols-2 mx-auto  w-11/12">
-                    <div class="cover">
+                <div class="grid grid-cols-4 mx-auto  w-9/12">
+                    <div class="cover col-span-2">
                         <img src="{{ asset('images/1.png') }}" alt="cover image folow us">
                     </div>
                     <div class="col-span-2">
                         <div class="grid gap-5">
 
-                            <h1 class="font-bold capitalize text-5xl text-white">Follow Us</h1>
-                            <div class="text-gray-600 text-lg leading-relaxed">
+                            <h1 class="font-bold capitalize text-5xl text-white">Make your date easy </h1>
+                            <div class="text-gray-600 text-lg leading-relaxed text-left">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam placeat eligendi
-                                reprehenderit, sint nostrum et, esse mollitia earum deserunt, molestiae quo assumenda
-                                est
-                                rem quasi obcaecati ad ipsa dolorum voluptate.
+                                reprehenderit, sint nostrum et, esse mollitia earum deserunt, molestiae quo assumenda:
+                                <ul class="list-">
+                                    <li class="flex gap-2 align-middle items-center"><span
+                                            class="fa fa-check text-white font-bold text-sm"></span> item 1 </li>
+                                    <li class="flex gap-2 align-middle items-center"><span
+                                            class="fa fa-check text-white font-bold text-sm"></span> item 1 </li>
+                                    <li class="flex gap-2 align-middle items-center"><span
+                                            class="fa fa-check text-white font-bold text-sm"></span> item 1 </li>
+                                    <li class="flex gap-2 align-middle items-center"><span
+                                            class="fa fa-check text-white font-bold text-sm"></span> item 1 </li>
+                                    <li class="flex gap-2 align-middle items-center"><span
+                                            class="fa fa-check text-white font-bold text-sm"></span> item 1 </li>
+
+                                </ul>
+                                <form>
+                                    <div class="flex gap-2 mt-4">
+                                        <a href="#"
+                                            class="btn-primary bg-second text-white font-bold text-lg w-1/4 border-none shadow-sm text-center">Sing
+                                            up</a>
+                                    </div>
+                                </form>
                             </div>
-                            <ul class="flex gap-3">
-                                <li class=""><span
-                                        class="fa fa-brands fa-facebook-f bg-white rounded-full py-2 px-3 hover:bg-second text-primary cursor-pointer"></span>
-                                </li>
-                                <li class=""><span
-                                        class="fa fa-brands fa-facebook-f bg-white rounded-full py-2 px-3 hover:bg-second text-primary cursor-pointer"></span>
-                                </li>
-                                <li class=""><span
-                                        class="fa fa-brands fa-facebook-f bg-white rounded-full py-2 px-3 hover:bg-second text-primary cursor-pointer"></span>
-                                </li>
-                                <li class=""><span
-                                        class="fa fa-brands fa-facebook-f bg-white rounded-full py-2 px-3 hover:bg-second text-primary cursor-pointer"></span>
-                                </li>
-                                <li class=""><span
-                                        class="fa fa-brands fa-facebook-f bg-white rounded-full py-2 px-3 hover:bg-second text-primary cursor-pointer"></span>
-                                </li>
-                            </ul>
+
                         </div>
                     </div>
 
                 </div>
             </div>
         </section>
-        <section>
 
-        </section>
+        <footer>
+            <div class="grid grid-cols-4 gap-3 mx-auto w-11/12">
+
+                <div class="mb-4 lg:mb-0">
+                    <h2 class="text-2xl mb-3">About Us</h2>
+                    <p class="text-gray-400 w-11/12">
+                        [Your website name] is dedicated to helping you understand and manage your health through BMI,
+                        BMR, and calorie calculations. Our mission is to provide you with the tools and information you
+                        need to make informed decisions about your well-being.
+                    </p>
+                    <div class="mt-4">
+                        <span class="flex items-center text-gray-400"><i class="fas fa-envelope mr-2"></i> Email:
+                            info@yourwebsite.com</span>
+                    </div>
+                </div>
+                <div class="">
+                    <h2 class="text-2xl mb-3">Quick Links</h2>
+                    <ul class="text-gray-400">
+                        <li><a href="#" class="hover:text-white">Home</a></li>
+                        <li><a href="#" class="hover:text-white">BMI Calculator</a></li>
+                        <li><a href="#" class="hover:text-white">BMR Calculator</a></li>
+                        <li><a href="#" class="hover:text-white">Calorie Calculator</a></li>
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="">
+                    <h2 class="text-2xl mb-3">Follow Us</h2>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="w-full">
+                    <img src="{{asset('images/v2.png')}}" class="w-full" alt="">
+                </div>
+       
+            </div>
+            <div class=" text-center text-white font-semibold bg-second">
+                &copy; {{ date('Y') }} [Your Website Name]. All Rights Reserved.
+            </div>
+        </footer>
+
+        {{-- Social media links --}}
+        {{-- <ul class="flex gap-3">
+                            <li class=""><span
+                                    class="fa fa-brands fa-facebook-f bg-white rounded-full py-2 px-3 hover:bg-second text-primary cursor-pointer"></span>
+                            </li>
+                            <li class=""><span
+                                    class="fa fa-brands fa-facebook-f bg-white rounded-full py-2 px-3 hover:bg-second text-primary cursor-pointer"></span>
+                            </li>
+                            <li class=""><span
+                                    class="fa fa-brands fa-facebook-f bg-white rounded-full py-2 px-3 hover:bg-second text-primary cursor-pointer"></span>
+                            </li>
+                            <li class=""><span
+                                    class="fa fa-brands fa-facebook-f bg-white rounded-full py-2 px-3 hover:bg-second text-primary cursor-pointer"></span>
+                            </li>
+                            <li class=""><span
+                                    class="fa fa-brands fa-facebook-f bg-white rounded-full py-2 px-3 hover:bg-second text-primary cursor-pointer"></span>
+                            </li>
+                        </ul> --}}
+
     </div>
 </div>
