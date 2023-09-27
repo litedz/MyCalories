@@ -34,7 +34,7 @@
             </div>
         </section>
         <section class="brr-bmi relative" id="">
-            <div class=" mx-auto max-w-screen-xl">
+            <div class="mx-auto max-w-screen-xl grid gap-y-10">
                 <div class="bmi flex leading-10 text-gray-700">
                     <div class="discption basis-1/2 grid gap-3 ">
                         <div class="text-3xl">BMI (Body Mass Index)</div>
@@ -110,7 +110,9 @@
         </section>
 
         <section class="nutrition-fitness h-[800px] mt-5  flex flex-col gap-5">
-            <h1 class="foods px-10 text-3xl ">foods </h1>
+            <div class="px-10 text-3xl text-center ">
+                <span class="after:content:' ' after:absolute after:w-1/2 after:bg-primary">Foods</span>
+            </div>
             <div id="default-carousel" class="relative w-full " data-carousel="slide">
                 <!-- Carousel wrapper -->
                 <div class="relative   h-full overflow-hidden rounded-lg md:h-96">
@@ -193,7 +195,7 @@
             </div>
 
         </section>
-        <section class="blog h-[800px] bg-second py-5">
+        <section class="blog  bg-second py-5">
             <div class="flex flex-wrap w-3/4 mx-auto gap-y-10 gap-x-2" x-data="{ item: 4 }">
                 <template x-for="i in item">
                     <article class="basis-5/12 flex flex-row text-white gap-2 border-b-2 border-gray-200 pb-3"
@@ -267,67 +269,70 @@
         </section>
 
         <footer>
-            <div class="grid grid-cols-4 gap-3 mx-auto w-11/12">
+            <div class="grid grid-cols-4 sm:grid-cols-2 gap-3 ">
+                <div class="col-span-2 bg-cover bg-top" style="background-image:url({{asset('images/v3.png')}});    background-position: center 60%; ">
+                    <div class="w-11/12 mx-auto flex pt-5">
 
-                <div class="mb-4 lg:mb-0">
-                    <h2 class="text-2xl mb-3">About Us</h2>
-                    <p class="text-gray-400 w-11/12">
-                        [Your website name] is dedicated to helping you understand and manage your health through BMI,
-                        BMR, and calorie calculations. Our mission is to provide you with the tools and information you
-                        need to make informed decisions about your well-being.
-                    </p>
-                    <div class="mt-4">
-                        <span class="flex items-center text-gray-400"><i class="fas fa-envelope mr-2"></i> Email:
-                            info@yourwebsite.com</span>
+                        <div class="mb-4 lg:mb-0 basis-1/2">
+                            <h2 class="text-2xl mb-3">About Us</h2>
+                            <p class="text-gray-200  w-11/12">
+                                [Your website name] is dedicated to helping you understand and manage your health through BMI,
+                                BMR, and calorie calculations. Our mission is to provide you with the tools and information you
+                                need to make informed decisions about your well-being.
+                            </p>
+                            <div class="mt-4">
+                                <span class="flex items-center text-gray-200  hover:text-primary cursor-pointer"><i class="fas fa-envelope mr-2"></i> Email:
+                                    info@yourwebsite.com</span>
+                            </div>
+                        </div>
+                        <div class="quick-links basis-1/2">
+                            <h2 class="text-2xl mb-3">Quick Links</h2>
+                            <ul class="text-gray-400">
+                                <li><a href="#" class="text-white hover:text-primary">Home</a></li>
+                                <li><a href="#" class="text-white hover:text-primary">BMI Calculator</a></li>
+                                <li><a href="#" class="text-white hover:text-primary">BMR Calculator</a></li>
+                                <li><a href="#" class="text-white hover:text-primary">Calorie Calculator</a></li>
+                                <li><a href="#" class="text-white hover:text-primary">Blog</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div class="">
-                    <h2 class="text-2xl mb-3">Quick Links</h2>
-                    <ul class="text-gray-400">
-                        <li><a href="#" class="hover:text-white">Home</a></li>
-                        <li><a href="#" class="hover:text-white">BMI Calculator</a></li>
-                        <li><a href="#" class="hover:text-white">BMR Calculator</a></li>
-                        <li><a href="#" class="hover:text-white">Calorie Calculator</a></li>
-                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                <div class="follow-us pt-5 sm:col-span-full">
+                    <h2 class="text-2xl mb-3 text-center">Follow Us</h2>
+                    <ul class="flex gap-3 justify-center">
+                        <li class=""><span
+                                class="fa fa-brands fa-facebook-f bg-gray-500 rounded-full py-2 px-3  hover:bg-gray-700 hover:text-primary text-white cursor-pointer"></span>
+                        </li>
+                        <li class=""><span
+                                class="fa fa-brands fa-facebook-f bg-gray-500 rounded-full py-2 px-3  hover:bg-gray-700 hover:text-primary text-white cursor-pointer"></span>
+                        </li>
+                        <li class=""><span
+                                class="fa fa-brands fa-facebook-f bg-gray-500 rounded-full py-2 px-3  hover:bg-gray-700 hover:text-primary text-white cursor-pointer"></span>
+                        </li>
+                        <li class=""><span
+                                class="fa fa-brands fa-facebook-f bg-gray-500 rounded-full py-2 px-3  hover:bg-gray-700 hover:text-primary text-white cursor-pointer"></span>
+                        </li>
+                        <li class=""><span
+                                class="fa fa-brands fa-facebook-f bg-gray-500 rounded-full py-2 px-3  hover:bg-gray-700 hover:text-primary text-white cursor-pointer"></span>
+                        </li>
                     </ul>
-                </div>
-                <div class="">
-                    <h2 class="text-2xl mb-3">Follow Us</h2>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin"></i></a>
+
+                    <div class="w-1/2 mx-auto">
+
+                        <img src="{{ asset('images/logo.png') }}" alt="">
                     </div>
                 </div>
-                <div class="w-full">
-                    <img src="{{asset('images/v2.png')}}" class="w-full" alt="">
+                <div class="w-full sm:hidden">
+                    <img src="{{ asset('images/v2.png') }}" class="w-full" alt="">
                 </div>
-       
+
             </div>
             <div class=" text-center text-white font-semibold bg-second">
                 &copy; {{ date('Y') }} [Your Website Name]. All Rights Reserved.
             </div>
         </footer>
 
-        {{-- Social media links --}}
-        {{-- <ul class="flex gap-3">
-                            <li class=""><span
-                                    class="fa fa-brands fa-facebook-f bg-white rounded-full py-2 px-3 hover:bg-second text-primary cursor-pointer"></span>
-                            </li>
-                            <li class=""><span
-                                    class="fa fa-brands fa-facebook-f bg-white rounded-full py-2 px-3 hover:bg-second text-primary cursor-pointer"></span>
-                            </li>
-                            <li class=""><span
-                                    class="fa fa-brands fa-facebook-f bg-white rounded-full py-2 px-3 hover:bg-second text-primary cursor-pointer"></span>
-                            </li>
-                            <li class=""><span
-                                    class="fa fa-brands fa-facebook-f bg-white rounded-full py-2 px-3 hover:bg-second text-primary cursor-pointer"></span>
-                            </li>
-                            <li class=""><span
-                                    class="fa fa-brands fa-facebook-f bg-white rounded-full py-2 px-3 hover:bg-second text-primary cursor-pointer"></span>
-                            </li>
-                        </ul> --}}
+
 
     </div>
 </div>
