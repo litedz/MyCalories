@@ -14,13 +14,14 @@ class ListCategorieFood extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make()->label("New Categorie"),
+            Actions\CreateAction::make()->label('New Categorie'),
         ];
     }
+
     protected function getHeaderWidgets(): array
     {
         return [
-        CategorieFoodOverview::class
+            CategorieFoodOverview::class,
         ];
     }
 }

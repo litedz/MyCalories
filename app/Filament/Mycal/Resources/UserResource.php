@@ -4,7 +4,6 @@ namespace App\Filament\Mycal\Resources;
 
 use App\Events\ContactUserEvent;
 use App\Filament\Mycal\Resources\UserResource\Pages;
-use App\Filament\Mycal\Resources\UserResource\Widgets\UserssOverview;
 use App\Jobs\ProcessContactUsers;
 use App\Models\profile;
 use App\Models\User;
@@ -28,8 +27,6 @@ class UserResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public $CustomeMessage;
-
-    
 
     public static function form(Form $form): Form
     {
@@ -137,5 +134,4 @@ class UserResource extends Resource
                 ->modifyQueryUsing(fn (Builder $query) => $query->where('active', false)),
         ];
     }
-
 }

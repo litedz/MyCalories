@@ -4,7 +4,6 @@ namespace App\Filament\Mycal\Resources\UserResource\Widgets;
 
 use App\Models\profile;
 use App\Models\User;
-use App\Models\user_list;
 use Carbon\Carbon;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
@@ -12,10 +11,9 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 class UsersOverview extends BaseWidget
 {
     protected static ?string $pollingInterval = '10s';
+
     protected function getStats(): array
     {
-
-
 
         return [
             Stat::make('USERS', User::all()->count())
@@ -25,7 +23,7 @@ class UsersOverview extends BaseWidget
             Stat::make('OVERWEIGHT', profile::where('result', 'OVERWEIGHT')->orWhere('result', 'OBESE_1')->orWhere('result', 'OBESE_2')->get()->count())
                 ->description('OVERWEIGHT Users')
                 ->descriptionIcon('heroicon-m-user')
-                ->chart([profile::where('result',)])->color('warning'),
+                ->chart([profile::where('result')])->color('warning'),
             Stat::make('ADULT OVERWEIGHT USERS', profile::whereIn('result', ['OVERWEIGHT', 'OBESE_1', 'OBESE_2'])
                 ->where('age', '<', 19)->get()->count())
                 ->description('Adult overweight users under 20 years old')
@@ -43,6 +41,7 @@ class UsersOverview extends BaseWidget
         }) as $key => $value) {
             array_push($data, $value->count());
         }
+
         return $data;
     }
 }

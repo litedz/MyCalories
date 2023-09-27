@@ -4,17 +4,14 @@ namespace App\Filament\Mycal\Resources;
 
 use App\Filament\Mycal\Resources\CategorieFoodResource\Pages;
 use App\Models\categorie_food;
-use App\Models\User;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Support\Facades\File;
 
 class CategorieFoodResource extends Resource
 {

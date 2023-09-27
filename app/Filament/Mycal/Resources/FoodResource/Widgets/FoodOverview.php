@@ -25,9 +25,9 @@ class FoodOverview extends BaseWidget
 
     protected function MostFoodAddToFavorite()
     {
-        $favorites= favorite::with('food')->get()->groupBy('food.name')->sortDesc();
+        $favorites = favorite::with('food')->get()->groupBy('food.name')->sortDesc();
         foreach ($favorites as $key => $value) {
-          return $key;
+            return $key;
         }
     }
 }

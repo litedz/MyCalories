@@ -53,6 +53,7 @@ class Navbar extends Component
             }
         }
     }
+
     public function destroy(Request $request)
     {
         Auth::guard('web')->logout();

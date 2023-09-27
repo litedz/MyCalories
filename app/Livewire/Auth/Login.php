@@ -31,7 +31,7 @@ class Login extends Component
 
     public function login(Request $request)
     {
-        
+
         $this->validate();
         try {
             $this->authenticate($request);
@@ -39,15 +39,15 @@ class Login extends Component
             throw $th;
         }
 
-
         $this->isAdmin = auth()->user()->IsAdmin();
         session()->regenerate();
-        if (!$this->isAdmin) {
+        if (! $this->isAdmin) {
 
             return redirect()->route('welcome');
         }
         $this->SweatAlert('Login With Success', 'success');
     }
+
     /**
      * Attempt to authenticate the request's credentials.
      *
@@ -58,7 +58,7 @@ class Login extends Component
 
         $this->ensureIsNotRateLimited($request);
 
-        if (!Auth::attempt($this->validate(), $this->rememberMe)) {
+        if (! Auth::attempt($this->validate(), $this->rememberMe)) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -76,7 +76,7 @@ class Login extends Component
      */
     public function ensureIsNotRateLimited(Request $request): void
     {
-        if (!RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
             return;
         }
 
@@ -97,10 +97,8 @@ class Login extends Component
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->email) . '|' . request()->ip());
+        return Str::transliterate(Str::lower($this->email).'|'.request()->ip());
     }
-
-
 
     public function render()
     {

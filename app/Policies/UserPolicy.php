@@ -62,6 +62,7 @@ class UserPolicy
     {
         //
     }
+
     public function adminView(User $user): bool
     {
         return Auth::check() && Auth::user()->IsAdmin();

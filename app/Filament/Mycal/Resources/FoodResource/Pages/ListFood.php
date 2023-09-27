@@ -17,10 +17,11 @@ class ListFood extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
     protected function getHeaderWidgets(): array
     {
         return [
-           FoodOverview::class,
+            FoodOverview::class,
         ];
     }
 }
