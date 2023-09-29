@@ -101,7 +101,10 @@ class Foods extends Component
 
     public function AddToFavorite($id)
     {
-
+        if (Gate::denies('create', 'App\Models\user_list')) {
+            $this->SweatAlert('Your must login to access to this action', 'warning');
+            return false;
+        }
         $checkFood = favorite::where('food_id', $id)->where('user_id', auth()->user()->id)->first();
 
         if (! is_null($checkFood)) {
@@ -121,7 +124,12 @@ class Foods extends Component
     public function EditAndAddToList()
     {
 
-        $this->authorize('create', 'App\Models\user_list');
+        if (Gate::denies('create', 'App\Models\user_list')) {
+            $this->SweatAlert('Your must login to access to this action', 'warning');
+            return false;
+        }
+
+    
 
         $this->validate();
 

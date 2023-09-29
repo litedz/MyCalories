@@ -83,7 +83,7 @@
                 <div class="items-center sm:w-full hidden justify-between sm:order-3 w-auto md:flex md:w-auto md:order-1 lg:flex lg:w-auto lg:order-1 xl:flex"
                     id="navbar-user">
                     <ul x-data="{ active: 'link-home' }"
-                        class="flex flex-row sm:flex-col font-medium p-4 md:p-0 mt-4  sm:border-gray-100 rounded-lg sm:bg-gray-50  md:space-x-8 md:mt-0 md  md:dark:bg-gray-900 dark:border-gray-700">
+                        class="flex flex-row sm:flex-col font-medium p-4 md:p-0 mt-4  sm:border-gray-100 rounded-lg sm:bg-gray-50  md:space-x-8 md:mt-0 md  md:dark:bg-gray-900 dark:border-gray-700 capitalize">
 
                         <li>
                             <a href="#" id="link-home" @mouseenter="active = $el.id" @mouseleave="active =''"
@@ -92,9 +92,14 @@
                                 aria-current="page">Home</a>
                         </li>
                         <li>
-                            <a href="/bmi" id="link-bmi" @mouseenter="active = $el.id" @mouseleave="active =''"
+                            <a href="{{route('calcul.bmi')}}" id="link-bmi" @mouseenter="active = $el.id" @mouseleave="active =''"
                                 :class="active == $el.id && '!active-link'" wire:navigate
                                 class="block bg-transparent  py-2 pl-3 pr-4 text-gray-900 rounded  md:p-0 dark:text-white     dark:border-gray-700">BMI</a>
+                        </li>
+                        <li>
+                            <a href="{{route('categories')}}" id="link-categories" @mouseenter="active = $el.id" @mouseleave="active =''"
+                                :class="active == $el.id && '!active-link'" wire:navigate
+                                class="block bg-transparent  py-2 pl-3 pr-4 text-gray-900 rounded  md:p-0 dark:text-white     dark:border-gray-700">categories</a>
                         </li>
 
 
