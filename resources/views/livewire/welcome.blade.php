@@ -33,10 +33,10 @@
 
             </div>
         </section>
-        <section class="bmr-bmi relative" id="">
+        <section class="bmr-bmi relative " id="">
             <div class="mx-auto w-11/12 grid grid-cols-1 gap-y-10">
                 <div class="bmi flex flex-row sm:flex-col leading-10 text-gray-700 md:border-b-2 border-gray-200">
-                    <div class="discption basis-1/2 sm:basis-full grid gap-3 sm:px-2 md:basis-full">
+                    <div class="discption basis-1/2 sm:basis-full flex flex-col gap-3 sm:px-2 md:basis-full dark:text-gray-300">
                         <div class="text-3xl">BMI (Body Mass Index)</div>
                         <div class="px-2">
                             <ul class="list-disc ">
@@ -74,7 +74,7 @@
                     <div class="basis-1/2 sm:mx-auto">
                         <img src="https://placehold.co/600x400" alt="bmr image" class="w-full">
                     </div>
-                    <div class="discption basis-1/2 grid gap-3 md:basis-full ">
+                    <div class="discption basis-1/2 grid gap-3 md:basis-full dark:text-gray-300">
                         <div class="text-3xl">BMR (Basal Metabolic Rate):</div>
                         <div class="px-2">
                             <li>
