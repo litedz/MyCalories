@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <div x-data="compo" :class="darkMode && 'dark'">
+    <div x-data="compo" :class="">
         {{-- navbar --}}
         <div>
             <livewire:navbar class="dark:bg-gray-800 py-4" />

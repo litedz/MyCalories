@@ -1,12 +1,10 @@
 <div>
-    <div x-data="{ open: false, openMenuMobile: false, OpenProfile: true, OpenSubMenuProfile: false, authUser: {{ auth()->check() }} }"
-        x-cloak>
-        <nav x-data="{FixedNav:false}"
-            class="bg-white border-gray-200 dark:bg-gray-900 dark:text-white transition-all duration-300"
-            :class="FixedNav && 'fixed z-30 w-full'"
+    <div x-data="{ open: false, openMenuMobile: false, OpenProfile: true, OpenSubMenuProfile: false, authUser: {{ auth()->check() }} }" x-cloak>
+        <nav x-data="{ FixedNav: false }"
+            class="bg-white border-gray-200 dark:bg-gray-900 dark:text-white transition-all duration-300 border-b border"
+            :class="FixedNav && 'fixed z-30 w-full shadow shadow-primary'"
             @scroll.window="window.scrollY > 200 ? FixedNav = true : FixedNav = false">
-            <div
-                class="w-11/12 flex flex-wrap items-center justify-between mx-auto dark:bg-slate-300 rounded-full pr-2">
+            <div class="w-11/12 flex flex-wrap items-center justify-between mx-auto dark:bg-gray-900 rounded-full pr-2">
                 {{-- logo --}}
                 <a href="/" class="flex items-center">
                     <img src="{{ asset('images/logo.png') }}"
@@ -18,7 +16,11 @@
                 <div class="flex items-center gap-2 order-2 ">
                     {{-- Enable dark mode button --}}
 
-                    <div x-show="authUser">
+                    <div x-show="authUser" class="flex gap-4">
+                        <div>
+                            <span :class="$wire.bg_limite" class=" px-5 rounded py-2 shadow-lg  text-white "
+                                wire:key='{{ rand() }}'><span class=" font-bold ">{{ $kcalDay }}</span> <span class="text-sm font-medium">kcal/Day</span></span>
+                        </div>
                         <button type="button"
                             class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                             id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
@@ -35,27 +37,32 @@
                                     class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
                             </div>
                             {{-- submenu profile --}}
-                            <ul class="py-2" aria-labelledby="user-menu-button">
+                            <ul class="py-2 capitalize" aria-labelledby="user-menu-button">
                                 <li>
                                     @can('adminView', App\Models\User::class)
-                                    <a x-show="{{ auth()->user()->IsAdmin() }}" href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+                                        <a x-show="{{ auth()->user()->IsAdmin() }}" href="#"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
                                     @endcan
                                 </li>
                                 <li>
-                                    <a href="#"
+                                    <a href="{{route('profile.edit')}}"
+                                    wire:navigate
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
                                 </li>
                                 <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
+                                    <a href="{{route('user.listFood')}}"
+                                    wire:navigate
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Your lists</a>
                                 </li>
                                 <li>
-                                    <a href="#"
+                                    <a href="{{route('logout')}}"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
                                         out</a>
                                 </li>
                             </ul>
+                        </div>
+                        <div>
+
                         </div>
                     </div>
                     <button type="button" @click="$dispatch('dark-mode')">
@@ -75,7 +82,7 @@
                 </div>
                 <div class="items-center sm:w-full hidden justify-between sm:order-3 w-auto md:flex md:w-auto md:order-1 lg:flex lg:w-auto lg:order-1 xl:flex"
                     id="navbar-user">
-                    <ul x-data="{active:'link-home'}"
+                    <ul x-data="{ active: 'link-home' }"
                         class="flex flex-row sm:flex-col font-medium p-4 md:p-0 mt-4  sm:border-gray-100 rounded-lg sm:bg-gray-50  md:space-x-8 md:mt-0 md  md:dark:bg-gray-900 dark:border-gray-700">
 
                         <li>
