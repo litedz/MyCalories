@@ -27,7 +27,13 @@ export default {
         extend: {
             screens:{
                 'sm': {'max': '767px'},
+                'md': {'min': '767px','max':'1024px'},
+                'lg': {'min': '1024px','max':'1280px'},
+                'xl': {'min': '1280px'},
             },
+            backgroundImage: {
+                'footer-shape': "url('/images/3.png')",
+              }
         },
         colors:{
             'primary' :'#7CC51F',
